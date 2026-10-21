@@ -4538,12 +4538,22 @@
       }
     }
 
-    /* Catalogue detail tags removed by client request. Keep the wishlist
-       action aligned to the bottom of each equal-height card. */
+    /* Client revision: catalogue cards do not display item numbers.
+       Keep only the category eyebrow, remove its separator, and place
+       the wishlist action at the bottom-right of each equal-height card. */
     .catalog-card-tags {
       display: none !important;
     }
+    .catalog-card .catalog-number {
+      display: none !important;
+    }
+    .catalog-card .catalog-category-label::before {
+      content: none !important;
+      margin: 0 !important;
+    }
     .catalog-card .wishlist-btn {
+      align-self: flex-end !important;
+      margin-left: auto;
       margin-top: auto !important;
     }
   </style>
@@ -5865,7 +5875,6 @@
 
       items.forEach(key => {
         const item = catalogData[key];
-        const itemNo = String(item.item_num || item.no || (allCatalogKeys.indexOf(key) + 1)).padStart(2, '0');
         const card = document.createElement('div');
         card.className = 'service-card catalog-card';
         card.dataset.catalogKey = key;
@@ -5876,7 +5885,7 @@
             <img src="${item.img}" alt="${item.title}" loading="lazy">
 </div>
           <div class="service-card-body">
-            <div class="catalog-card-topline"><span class="catalog-number">No. ${itemNo}</span><span class="catalog-category-label">${CATALOG_CATEGORY_LABELS[item.categoryKey] || item.cat}</span></div>
+            <div class="catalog-card-topline"><span class="catalog-category-label">${CATALOG_CATEGORY_LABELS[item.categoryKey] || item.cat}</span></div>
             <h3 class="service-card-title">${item.title}</h3>
             <p class="service-card-desc">${formatCatalogDesc(item.shortDesc || item.desc)}</p>
             <button type="button" class="wishlist-btn" data-wishlist-key="${key}" aria-pressed="false" onclick="toggleWishlist(event, '${key}')">
@@ -6642,5 +6651,5 @@
       syncWishlistButtons();
     })();
   </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e0a320dca40d67',t:'MTc5MjU4OTYzOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
