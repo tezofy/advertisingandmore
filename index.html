@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Delivery schedule and progress tracker for the client deliverables of Advertising & More Sdn. Bhd.">
+  <title>Advertising &amp; More — Delivery Schedule &amp; Progress</title>
+  <style>
+    :root {
+      --blue: #0049a8;
+      --blue-dark: #0b1e3f;
+      --gold: #ffce1b;
+      --cream: #f7eddc;
+      --text: #20304d;
+      --muted: #5b6b84;
+      --card: #ffffff;
+      --line: #dbe4f2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .topbar {
+      background: var(--blue);
+      color: #ffffff;
+      border-bottom: 4px solid var(--gold);
+      padding: 22px 20px;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+    .brand { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.01em; }
+    .brand-sub {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    main .wrap { padding-top: 44px; padding-bottom: 56px; }
+    h1 { font-size: 2rem; line-height: 1.2; color: var(--blue-dark); margin-bottom: 10px; }
+    .lead { color: var(--muted); max-width: 660px; margin-bottom: 22px; }
+    .lead a { color: var(--blue); font-weight: 700; }
+
+    .summary { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+    .summary .chip {
+      background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+      padding: 8px 16px; font-size: 0.88rem; font-weight: 700; color: var(--blue-dark);
+      box-shadow: 0 4px 14px rgba(11, 30, 63, 0.05);
+    }
+    .summary .chip strong { color: var(--blue); }
+
+    .page-list { display: grid; gap: 14px; }
+    .page-card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 20px 22px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      box-shadow: 0 8px 22px rgba(11, 30, 63, 0.06);
+    }
+    .page-no {
+      flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%;
+      display: grid; place-items: center; font-weight: 800;
+      background: var(--blue); color: #ffffff;
+    }
+    .page-card.scheduled .page-no { background: #7186a8; }
+    .page-card.due .page-no { background: #d5a021; color: var(--blue-dark); }
+    .page-info { flex: 1 1 280px; min-width: 0; }
+    .page-info h2 { font-size: 1.08rem; color: var(--blue-dark); }
+    .page-info p { font-size: 0.9rem; color: var(--muted); }
+    .page-info .when { font-weight: 700; color: var(--text); }
+    .badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em;
+      text-transform: uppercase; border-radius: 999px; padding: 4px 12px; margin-top: 6px;
+    }
+    .badge.done { background: #e5f6ec; color: #137a3f; }
+    .badge.soon { background: #eef2fa; color: #52698f; }
+    .badge.today { background: #fff3cf; color: #8a6408; }
+    .open-btn {
+      display: inline-block; background: var(--gold); color: var(--blue-dark);
+      font-weight: 800; text-decoration: none; border-radius: 999px; padding: 11px 22px;
+    }
+    .open-btn:hover { background: #f5c400; }
+    .note { margin-top: 26px; font-size: 0.9rem; color: var(--muted); }
+    .note a { color: var(--blue); font-weight: 700; }
+    footer {
+      border-top: 1px solid var(--line); padding: 22px 20px 34px;
+      color: var(--muted); font-size: 0.9rem; text-align: center;
+    }
+    footer a { color: var(--blue); font-weight: 700; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="brand">Advertising &amp; More</div>
+      <div class="brand-sub">Integrated Agency</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Delivery Schedule &amp; Progress</h1>
+      <p class="lead">
+        Below is the list of deliverables requested by the client for
+        <a href="https://advertisingandmore.com" target="_blank" rel="noopener">advertisingandmore.com</a>,
+        in delivery order. Each item shows its date and current status, so it is
+        easy to see what is completed, what is coming next, and when.
+      </p>
+
+      <div class="summary" aria-label="Progress summary">
+        <span class="chip">Total deliverables: <strong>5</strong></span>
+        <span class="chip">Completed: <strong>1</strong></span>
+        <span class="chip">Scheduled: <strong>4</strong></span>
+        <span class="chip">Progress: <strong>20%</strong></span>
+      </div>
+
+      <div class="page-list">
+        <!-- Item 1 — completed. Keep the link updated if the file is renamed. -->
+        <article class="page-card">
+          <div class="page-no">1</div>
+          <div class="page-info">
+            <h2>Event &amp; Party Rentals page</h2>
+            <p>Type: Web page &middot; File: <code>party-services-rentals.html</code></p>
+            <p class="when">Date: 21 October 2026 &middot; Time: TBC</p>
+            <span class="badge done">Completed</span>
+          </div>
+          <a class="open-btn" href="./party-services-rentals.html">Open page</a>
+        </article>
+
+        <!-- Item 2 -->
+        <article class="page-card due">
+          <div class="page-no">2</div>
+          <div class="page-info">
+            <h2>Job Vacancy page</h2>
+            <p>Type: Web page &middot; Output: to be added</p>
+            <p class="when">Date: 21 October 2026 &middot; Time: TBC</p>
+            <span class="badge today">Scheduled — due today</span>
+          </div>
+        </article>
+
+        <!-- Item 3 -->
+        <article class="page-card scheduled">
+          <div class="page-no">3</div>
+          <div class="page-info">
+            <h2>Business Card design</h2>
+            <p>Type: Design &middot; Output: to be added</p>
+            <p class="when">Date: 22 October 2026 &middot; Time: TBC</p>
+            <span class="badge soon">Scheduled</span>
+          </div>
+        </article>
+
+        <!-- Item 4 -->
+        <article class="page-card scheduled">
+          <div class="page-no">4</div>
+          <div class="page-info">
+            <h2>Email signoff design</h2>
+            <p>Type: Design &middot; Output: to be added</p>
+            <p class="when">Date: 22 October 2026 &middot; Time: TBC</p>
+            <span class="badge soon">Scheduled</span>
+          </div>
+        </article>
+
+        <!-- Item 5 -->
+        <article class="page-card scheduled">
+          <div class="page-no">5</div>
+          <div class="page-info">
+            <h2>Maldives Corporate Conference brochure</h2>
+            <p>Type: Brochure &middot; Output: to be added</p>
+            <p class="when">Date: 23 October 2026 &middot; Time: TBC</p>
+            <span class="badge soon">Scheduled</span>
+          </div>
+        </article>
+      </div>
+
+      <p class="note">
+        Times are to be confirmed (TBC). This tracker is updated as each deliverable
+        is completed. Full details are also in
+        <a href="./DELIVERY-SCHEDULE.md">DELIVERY-SCHEDULE.md</a>.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    Main website:
+    <a href="https://advertisingandmore.com" target="_blank" rel="noopener">advertisingandmore.com</a>
+    &middot; Advertising &amp; More Sdn. Bhd.
+  </footer>
+</body>
+</html>

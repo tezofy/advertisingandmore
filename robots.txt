@@ -1,0 +1,5 @@
+# Preview deployment only - keep search engines out while the client
+# review is in progress. Remove this file before any production launch
+# so the real site can be indexed.
+User-agent: *
+Disallow: /
