@@ -3629,6 +3629,209 @@
         font-size: 0.76rem !important;
       }
     }
+
+    /* ================================================================
+       Services search and filters — long pill search, navy venue
+       segmented control and a gold-active category rail, following
+       the client reference. Existing search/category icons remain.
+       ================================================================ */
+    .services-section .services-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .services-section .search-box-wrap {
+      flex: 1 1 560px;
+      max-width: none;
+      min-width: min(100%, 420px);
+    }
+    .services-section .search-input {
+      min-height: 58px;
+      padding: 15px 24px 15px 52px;
+      background: #ffffff;
+      border: 1px solid #e6e1d3;
+      border-radius: 999px;
+      box-shadow: 0 3px 14px rgba(11, 30, 63, 0.04);
+      font-size: 0.95rem;
+      color: var(--color-primary-dark);
+    }
+    .services-section .search-input::placeholder {
+      color: #8b8f99;
+      opacity: 1;
+    }
+    .services-section .search-input:focus {
+      outline: none;
+      border-color: #d5a021;
+      box-shadow: 0 0 0 4px rgba(213, 160, 33, 0.14), 0 6px 18px rgba(11, 30, 63, 0.06);
+    }
+    .services-section .search-icon {
+      left: 20px;
+      color: #7f8794;
+      pointer-events: none;
+    }
+    .venue-filter {
+      flex: 0 1 360px;
+      min-width: min(100%, 300px);
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      background: #ffffff;
+      border: 1px solid #e6e1d3;
+      border-radius: 999px;
+      box-shadow: 0 3px 14px rgba(11, 30, 63, 0.04);
+    }
+    .venue-filter-btn {
+      flex: 1 1 0;
+      min-height: 48px;
+      padding: 10px 18px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: #34415a;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .venue-filter-btn:hover {
+      color: #071735;
+      background: #f7f1df;
+    }
+    .venue-filter-btn:focus-visible,
+    .services-section .tab-pill-btn:focus-visible {
+      outline: 3px solid rgba(213, 160, 33, 0.45);
+      outline-offset: 2px;
+    }
+    .venue-filter-btn.active {
+      background: #071735;
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(7, 23, 53, 0.22);
+    }
+    .services-section .category-tabs-container {
+      margin: 0 0 6px;
+      padding: 2px 2px 12px;
+      overflow-x: auto;
+      scrollbar-width: thin !important;
+      scrollbar-color: #8d8d8d #ebe8df;
+    }
+    .services-section .category-tabs-container::-webkit-scrollbar {
+      display: block !important;
+      height: 8px;
+    }
+    .services-section .category-tabs-container::-webkit-scrollbar-track {
+      background: #ebe8df;
+      border-radius: 999px;
+    }
+    .services-section .category-tabs-container::-webkit-scrollbar-thumb {
+      background: #8d8d8d;
+      border-radius: 999px;
+    }
+    .services-section .category-tabs-nav {
+      gap: 10px;
+      padding: 2px;
+    }
+    .services-section .tab-pill-btn {
+      min-height: 48px;
+      padding: 11px 20px;
+      background: #ffffff;
+      border: 1px solid #e3ded2;
+      border-radius: 999px;
+      box-shadow: 0 2px 8px rgba(11, 30, 63, 0.04);
+      color: #526072;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+    .services-section .tab-pill-btn:hover {
+      transform: none;
+      border-color: #d5a021;
+      color: #0b1e3f;
+    }
+    .services-section .tab-pill-btn.active {
+      background: linear-gradient(180deg, #e3aa1e 0%, #d3990d 100%);
+      border-color: #d3990d;
+      color: #111827;
+      box-shadow: 0 8px 18px rgba(211, 153, 13, 0.24);
+    }
+    .services-section .tab-count-badge {
+      background: #f6edd5;
+      color: #96700a;
+      padding: 2px 7px;
+    }
+    .services-section .tab-pill-btn.active .tab-count-badge {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      margin-left: -3px;
+    }
+    .services-results-row {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 0 20px;
+    }
+    .services-results-row .services-status-text {
+      font-size: 0.84rem;
+    }
+    @media (max-width: 900px) {
+      .services-section .services-toolbar {
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .services-section .search-box-wrap {
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+      .venue-filter {
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+      .services-section .category-tabs-container {
+        margin: 0 -18px 6px;
+        padding: 2px 18px 10px;
+      }
+    }
+    @media (max-width: 640px) {
+      .services-section .search-input {
+        min-height: 54px;
+        padding: 13px 18px 13px 48px;
+        font-size: 0.9rem;
+      }
+      .services-section .search-icon {
+        left: 18px;
+      }
+      .venue-filter {
+        min-height: 50px;
+      }
+      .venue-filter-btn {
+        min-height: 42px;
+        padding: 9px 8px;
+        font-size: 0.84rem;
+      }
+      .services-section .tab-pill-btn {
+        min-height: 44px;
+        padding: 9px 14px;
+        font-size: 0.8rem;
+      }
+      .services-results-row {
+        justify-content: flex-start;
+        margin-bottom: 14px;
+      }
+    }
+    @media (max-width: 380px) {
+      .services-section .category-tabs-container {
+        margin-inline: -16px;
+        padding-inline: 16px;
+        scroll-padding-inline: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -4072,10 +4275,27 @@
         </p>
       </div>
 
+      <!-- Services Search & Venue Filter -->
+      <div class="services-toolbar">
+        <div class="search-box-wrap">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="search-input" id="servicesSearchInput" placeholder="Search games, entertainers, tasting bars, simulators..." aria-label="Search party services and rentals" oninput="handleSearch(this.value)">
+        </div>
+        <div class="venue-filter" role="group" aria-label="Filter by event space">
+          <button type="button" class="venue-filter-btn active" data-venue="all" aria-pressed="true">All</button>
+          <button type="button" class="venue-filter-btn" data-venue="ballroom" aria-pressed="false">Ballroom</button>
+          <button type="button" class="venue-filter-btn" data-venue="foyer" aria-pressed="false">Foyer</button>
+        </div>
+      </div>
+
       <!-- Category Filter Tabs Bar (Horizontally scrollable) -->
       <div class="category-tabs-container">
         <div class="category-tabs-nav" id="category-tabs">
-          <button class="tab-pill-btn active" data-cat="cat-1">
+          <button class="tab-pill-btn active" data-cat="all">
+            <span>🌟 All</span>
+            <span class="tab-count-badge">100</span>
+          </button>
+          <button class="tab-pill-btn" data-cat="cat-1">
             <span>🎯 1. Giant Games</span>
             <span class="tab-count-badge">10</span>
           </button>
@@ -4115,21 +4335,12 @@
             <span>🚀 10. Big-Ticket</span>
             <span class="tab-count-badge">10</span>
           </button>
-          <button class="tab-pill-btn" data-cat="all">
-            <span>🌟 View All</span>
-            <span class="tab-count-badge">100</span>
-          </button>
         </div>
       </div>
 
-      <!-- Services Toolbar with Search & Count -->
-      <div class="services-toolbar">
-        <div class="search-box-wrap">
-          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" class="search-input" id="servicesSearchInput" placeholder="Search 100 games, photo booths, rentals..." oninput="handleSearch(this.value)">
-        </div>
+      <div class="services-results-row">
         <div class="services-status-text" id="servicesStatus">
-          Showing <span id="currentCount">10</span> of <span>100</span> party services &amp; rentals
+          Showing <span id="currentCount">15</span> of <span>100</span> party services &amp; rentals
         </div>
       </div>
 
@@ -4866,9 +5077,11 @@
        CATEGORY FILTER & DYNAMIC RENDERING
        ========================================================================== */
     const tabBtns = document.querySelectorAll('.tab-pill-btn');
+    const venueFilterBtns = document.querySelectorAll('.venue-filter-btn');
     const servicesGrid = document.getElementById('services-grid');
     const currentCountEl = document.getElementById('currentCount');
-    let currentCategoryKey = 'cat-1';
+    let currentCategoryKey = 'featured';
+    let currentVenueFilter = 'all';
     let searchQuery = '';
 
     const CATALOG_CATEGORY_LABELS = {
@@ -4902,16 +5115,49 @@
         tags.map(tag => '<span class="catalog-card-tag">' + tag + '</span>').join('') + '</div>';
     }
 
+    function getFeaturedCatalogKeys() {
+      const categoryKeys = Object.keys(CATALOG_CATEGORY_LABELS);
+      const keysByCategory = {};
+      categoryKeys.forEach(catKey => {
+        keysByCategory[catKey] = Object.keys(catalogData)
+          .filter(key => catalogData[key].categoryKey === catKey);
+      });
+      const featured = [];
+      for (let index = 0; featured.length < 15; index++) {
+        for (const catKey of categoryKeys) {
+          const key = keysByCategory[catKey][index];
+          if (key) featured.push(key);
+          if (featured.length === 15) break;
+        }
+      }
+      return featured;
+    }
+
+    function catalogItemMatchesVenue(item) {
+      if (currentVenueFilter === 'all') return true;
+      const details = [item.title, item.desc, item.cat, item.categoryName]
+        .concat(item.specs || [])
+        .join(' ')
+        .toLowerCase();
+      return details.includes(currentVenueFilter);
+    }
+
 
     function renderCategory(catKey) {
       currentCategoryKey = catKey;
       const allCatalogKeys = Object.keys(catalogData);
       let items = [];
 
-      if (catKey === 'all') {
+      if (catKey === 'featured' && currentVenueFilter === 'all' && searchQuery.trim() === '') {
+        items = getFeaturedCatalogKeys();
+      } else if (catKey === 'all' || catKey === 'featured') {
         items = Object.keys(catalogData);
       } else {
         items = Object.keys(catalogData).filter(k => catalogData[k].categoryKey === catKey);
+      }
+
+      if (currentVenueFilter !== 'all') {
+        items = items.filter(k => catalogItemMatchesVenue(catalogData[k]));
       }
 
       // Apply search filter if any
@@ -4976,7 +5222,20 @@
       });
     });
 
-    // Client preview: render the simplified numbered + wishlist card template immediately.
+    venueFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        venueFilterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        currentVenueFilter = btn.getAttribute('data-venue') || 'all';
+        renderCategory(currentCategoryKey);
+      });
+    });
+
+    // Client preview: open with a 15-item mix drawn from every category.
     renderCategory(currentCategoryKey);
 
     function formatCatalogDesc(text) {
@@ -5702,5 +5961,5 @@
       syncWishlistButtons();
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4dfdef66af02154',t:'MTc5MjU4MTYwNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e00e6c7844c3a2',t:'MTc5MjU4MzU0OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
