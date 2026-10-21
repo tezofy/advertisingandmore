@@ -3832,6 +3832,720 @@
         scroll-padding-inline: 16px;
       }
     }
+
+    /* ================================================================
+       Client mobile + wishlist update:
+       - phone/tablet search and venue controls share one line, with
+         the category rail as the second line;
+       - the Services cards form a two-column grid on phones;
+       - a floating wishlist tray appears as soon as items are saved;
+       - the mobile footer uses stronger text and a larger footer cup.
+       ================================================================ */
+    @media (max-width: 900px) {
+      .services-section .services-toolbar {
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .services-section .search-box-wrap {
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: none;
+      }
+      .services-section .search-input {
+        min-height: 54px;
+      }
+      .services-section .venue-filter {
+        flex: 0 1 300px;
+        min-width: 230px;
+        min-height: 54px;
+      }
+      .services-section .venue-filter-btn {
+        min-height: 44px;
+      }
+      /* Keep the visual filter block to two lines on small screens while
+         retaining the live count for assistive technology. */
+      .services-section .services-results-row {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        margin: -1px !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+    }
+    @media (max-width: 640px) {
+      .services-section .services-toolbar {
+        gap: 7px;
+      }
+      .services-section .search-input {
+        min-height: 47px;
+        padding: 11px 10px 11px 39px;
+        font-size: 0.82rem;
+      }
+      .services-section .search-icon {
+        left: 14px;
+        width: 16px;
+        height: 16px;
+      }
+      .services-section .venue-filter {
+        flex: 0 0 48%;
+        min-width: 0;
+        min-height: 47px;
+        padding: 2px;
+        gap: 1px;
+      }
+      .services-section .venue-filter-btn {
+        min-height: 41px;
+        padding: 6px 1px;
+        font-size: clamp(0.52rem, 2.65vw, 0.66rem);
+        letter-spacing: -0.015em;
+      }
+    }
+    @media (max-width: 380px) {
+      .services-section .services-toolbar {
+        gap: 6px;
+      }
+      .services-section .search-input {
+        padding-left: 35px;
+      }
+      .services-section .search-icon {
+        left: 12px;
+        width: 15px;
+        height: 15px;
+      }
+      .services-section .venue-filter {
+        flex-basis: 49%;
+      }
+      .services-section .venue-filter-btn {
+        font-size: 0.52rem;
+      }
+    }
+
+    /* Phone Services explorer: two complete cards per row, vertical scroll. */
+    @media (max-width: 700px) {
+      .services-section .services-grid-12 {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+        overflow: visible !important;
+        overscroll-behavior-inline: auto !important;
+        scroll-snap-type: none !important;
+        scroll-padding-inline: 0 !important;
+        margin-inline: 0 !important;
+        padding: 0 !important;
+      }
+      .services-grid-12 .service-card {
+        flex: none !important;
+        width: auto !important;
+        max-width: none !important;
+        min-width: 0 !important;
+        scroll-snap-align: none !important;
+        border-radius: 16px;
+      }
+      .services-grid-12 .catalog-card .service-card-body {
+        padding: 12px !important;
+      }
+      .services-grid-12 .catalog-card .catalog-card-topline {
+        gap: 4px;
+        margin-bottom: 6px;
+      }
+      .services-grid-12 .catalog-card .catalog-number,
+      .services-grid-12 .catalog-card .catalog-category-label {
+        font-size: 0.5rem;
+        letter-spacing: 0.07em;
+      }
+      .services-grid-12 .catalog-card .catalog-category-label::before {
+        margin-right: 4px;
+      }
+      .services-grid-12 .catalog-card .service-card-title {
+        font-size: 0.86rem !important;
+        line-height: 1.22 !important;
+        margin-bottom: 6px;
+      }
+      .services-grid-12 .catalog-card .service-card-desc {
+        font-size: 0.72rem !important;
+        line-height: 1.4 !important;
+        min-height: 2.8em;
+        margin-bottom: 9px;
+      }
+      .services-grid-12 .catalog-card-tags {
+        gap: 4px;
+      }
+      .services-grid-12 .catalog-card-tag {
+        padding: 3px 5px;
+        font-size: 0.5rem;
+      }
+      .services-grid-12 .catalog-card .wishlist-btn {
+        margin-top: 10px;
+        padding: 7px 9px !important;
+        font-size: 0.62rem !important;
+        gap: 5px;
+      }
+      .services-grid-12 .catalog-card .wishlist-btn svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+    @media (max-width: 380px) {
+      .services-section .services-grid-12 {
+        gap: 10px !important;
+      }
+      .services-grid-12 .catalog-card .service-card-body {
+        padding: 10px !important;
+      }
+      .services-grid-12 .catalog-card .catalog-number,
+      .services-grid-12 .catalog-card .catalog-category-label {
+        font-size: 0.47rem;
+        letter-spacing: 0.055em;
+      }
+      .services-grid-12 .catalog-card .service-card-title {
+        font-size: 0.8rem !important;
+      }
+      .services-grid-12 .catalog-card .service-card-desc {
+        font-size: 0.68rem !important;
+      }
+      .services-grid-12 .catalog-card-tag {
+        font-size: 0.47rem;
+        padding: 3px 4px;
+      }
+      .services-grid-12 .catalog-card .wishlist-btn {
+        padding: 6px 7px !important;
+        font-size: 0.58rem !important;
+      }
+    }
+
+    /* Floating wishlist tray and selected-items drawer. */
+    body.wishlist-drawer-open {
+      overflow: hidden;
+    }
+    .wishlist-tray-btn {
+      position: fixed;
+      right: 24px;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      z-index: 2300;
+      min-height: 56px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px 8px 9px;
+      border: 1.5px solid rgba(255, 206, 27, 0.85);
+      border-radius: 999px;
+      background: linear-gradient(135deg, #071735 0%, #0049a8 100%);
+      color: #ffffff;
+      box-shadow: 0 18px 38px rgba(7, 23, 53, 0.3), 0 5px 14px rgba(7, 23, 53, 0.18);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+    .wishlist-tray-btn[hidden] {
+      display: none !important;
+    }
+    .wishlist-tray-btn.is-visible {
+      animation: wishlistTrayIn 0.35s ease both;
+    }
+    .wishlist-tray-btn:hover,
+    .wishlist-tray-btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 44px rgba(7, 23, 53, 0.34), 0 7px 18px rgba(7, 23, 53, 0.2);
+      outline: none;
+    }
+    .wishlist-tray-btn:focus-visible,
+    .wishlist-drawer-close:focus-visible,
+    .wishlist-drawer-remove:focus-visible,
+    .wishlist-drawer-action:focus-visible {
+      outline: 3px solid rgba(255, 206, 27, 0.72);
+      outline-offset: 3px;
+    }
+    @keyframes wishlistTrayIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .wishlist-tray-icon {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #ffce1b;
+      color: #071735;
+      box-shadow: inset 0 -2px 0 rgba(7, 23, 53, 0.12);
+    }
+    .wishlist-tray-icon svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+    }
+    .wishlist-tray-count {
+      min-width: 28px;
+      height: 28px;
+      padding: 0 7px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #071735;
+      font-size: 0.82rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    body.has-wishlist-items .toast-container {
+      bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+    .wishlist-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 2400;
+      background: rgba(7, 23, 53, 0.58);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .wishlist-drawer-backdrop.is-open {
+      opacity: 1;
+    }
+    .wishlist-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 2500;
+      width: min(430px, calc(100vw - 24px));
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      color: var(--color-primary-dark);
+      box-shadow: -24px 0 60px rgba(7, 23, 53, 0.28);
+      transform: translateX(105%);
+      transition: transform 0.24s ease;
+    }
+    .wishlist-drawer.is-open {
+      transform: translateX(0);
+    }
+    .wishlist-drawer[hidden],
+    .wishlist-drawer-backdrop[hidden] {
+      display: none !important;
+    }
+    .wishlist-drawer-header {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid rgba(11, 30, 63, 0.1);
+      background: linear-gradient(135deg, #fff9df 0%, #ffffff 72%);
+    }
+    .wishlist-drawer-eyebrow {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--color-gold-text);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .wishlist-drawer-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      line-height: 1.12;
+      color: #071735;
+    }
+    .wishlist-drawer-title strong {
+      color: var(--color-primary);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+    .wishlist-drawer-close {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(11, 30, 63, 0.14);
+      border-radius: 50%;
+      background: #ffffff;
+      color: #071735;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .wishlist-drawer-close:hover {
+      background: #fff2bd;
+      transform: rotate(4deg);
+    }
+    .wishlist-drawer-close svg {
+      width: 20px;
+      height: 20px;
+    }
+    .wishlist-drawer-copy {
+      flex: 0 0 auto;
+      margin: 0;
+      padding: 14px 22px 4px;
+      color: var(--color-text-muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .wishlist-drawer-items {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 16px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .wishlist-drawer-item {
+      display: grid;
+      grid-template-columns: 68px minmax(0, 1fr) 36px;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+      border: 1px solid rgba(11, 30, 63, 0.1);
+      border-radius: 16px;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(11, 30, 63, 0.06);
+    }
+    .wishlist-drawer-thumb {
+      width: 68px;
+      height: 68px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #edf1f7;
+    }
+    .wishlist-drawer-item-meta {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--color-gold-text);
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+    .wishlist-drawer-item-title {
+      display: block;
+      color: #071735;
+      font-size: 0.94rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+    .wishlist-drawer-remove {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(11, 30, 63, 0.12);
+      border-radius: 50%;
+      background: #fff7db;
+      color: #071735;
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .wishlist-drawer-remove:hover {
+      background: #ffce1b;
+    }
+    .wishlist-drawer-empty {
+      margin: 12px 0;
+      padding: 22px 16px;
+      border: 1.5px dashed rgba(213, 160, 33, 0.55);
+      border-radius: 16px;
+      background: #fffaf0;
+      color: var(--color-text-muted);
+      text-align: center;
+      line-height: 1.55;
+    }
+    .wishlist-drawer-empty[hidden] {
+      display: none !important;
+    }
+    .wishlist-drawer-footer {
+      flex: 0 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      padding: 16px 22px calc(18px + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid rgba(11, 30, 63, 0.1);
+      background: #ffffff;
+      box-shadow: 0 -12px 28px rgba(11, 30, 63, 0.07);
+    }
+    .wishlist-drawer-action {
+      min-height: 48px;
+      padding: 11px 17px;
+      border: 1.5px solid rgba(11, 30, 63, 0.2);
+      border-radius: 999px;
+      background: #ffffff;
+      color: #071735;
+      font-family: var(--font-body);
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+    .wishlist-drawer-action:hover:not(:disabled) {
+      transform: translateY(-1px);
+      background: #fff7db;
+    }
+    .wishlist-drawer-action.primary {
+      border-color: #ffce1b;
+      background: linear-gradient(135deg, #ffce1b 0%, #d5a021 100%);
+      color: #071735;
+      box-shadow: 0 12px 24px rgba(213, 160, 33, 0.24);
+    }
+    .wishlist-drawer-action.primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, #ffd83d 0%, #c99618 100%);
+    }
+    .wishlist-drawer-action:disabled {
+      opacity: 0.48;
+      cursor: not-allowed;
+    }
+    @media (max-width: 640px) {
+      .wishlist-tray-btn {
+        right: 14px;
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+        min-height: 52px;
+        padding-right: 13px;
+        font-size: 0.86rem;
+      }
+      .wishlist-tray-icon {
+        width: 38px;
+        height: 38px;
+      }
+      body.has-wishlist-items .toast-container {
+        bottom: calc(84px + env(safe-area-inset-bottom, 0px)) !important;
+      }
+      .wishlist-drawer {
+        width: min(94vw, 430px);
+      }
+      .wishlist-drawer-header,
+      .wishlist-drawer-copy,
+      .wishlist-drawer-items,
+      .wishlist-drawer-footer {
+        padding-left: 17px;
+        padding-right: 17px;
+      }
+      .wishlist-drawer-footer {
+        grid-template-columns: 1fr;
+      }
+      .wishlist-drawer-action {
+        width: 100%;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .wishlist-tray-btn,
+      .wishlist-drawer,
+      .wishlist-drawer-backdrop {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* Footer polish: stronger small-screen copy and a larger animated
+       coffee cup on the footer pill only. */
+    .foot-cta-exact .btn-coffee-pill {
+      padding-left: 118px;
+    }
+    .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+      width: 118px;
+      left: -8px;
+      top: -30px;
+    }
+    @media (min-width: 1025px) and (max-width: 1150px) {
+      .foot-cta-exact .btn-coffee-pill {
+        padding-left: 98px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 98px;
+        top: -25px;
+      }
+    }
+    @media (max-width: 1024px) {
+      .site-footer .footer-col-1 .company-title,
+      .site-footer .footer-nav-col h4 {
+        color: #ffffff;
+        opacity: 1;
+      }
+      .site-footer .footer-exact-links li a {
+        color: #f5f8ff;
+        font-weight: 650;
+        letter-spacing: 0;
+        opacity: 1;
+      }
+      .site-footer .footer-copy-text {
+        color: #eef4ff;
+        opacity: 1;
+      }
+      .foot-cta-exact .btn-coffee-pill {
+        padding-left: 90px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 90px;
+        top: -23px;
+      }
+    }
+    @media (max-width: 900px) {
+      .foot-cta-exact .btn-coffee-pill {
+        padding-left: 76px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 76px;
+        top: -19px;
+      }
+    }
+    @media (max-width: 760px) {
+      .foot-cta-exact .btn-coffee-pill {
+        padding-left: 60px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 60px;
+        top: -15px;
+      }
+    }
+    @media (max-width: 640px) {
+      .site-footer .container {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .site-footer .footer-grid-exact {
+        grid-template-columns: 0.95fr 0.96fr 0.96fr 1.36fr;
+        gap: 18px 6px;
+      }
+      .site-footer .footer-col-1 .company-title {
+        font-size: 0.7rem;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: 0;
+      }
+      .site-footer .footer-social-icon {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #ffffff;
+      }
+      .site-footer .footer-nav-col h4 {
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        margin-bottom: 9px;
+      }
+      .site-footer .footer-exact-links {
+        gap: 7px;
+      }
+      .site-footer .footer-exact-links li a {
+        font-size: 0.66rem;
+        font-weight: 700;
+        color: #f7faff;
+        line-height: 1.42;
+      }
+      .site-footer .footer-copy-text {
+        font-size: 0.68rem;
+        font-weight: 600;
+        line-height: 1.55;
+      }
+      .foot-cta-exact .footer-seal {
+        width: 76px;
+        height: 76px;
+        margin-bottom: 24px;
+      }
+      .foot-cta-exact .seal-core {
+        width: 60px;
+        height: 60px;
+      }
+      .foot-cta-exact .footer-email-link {
+        font-weight: 700;
+        color: #ffffff;
+      }
+      .foot-cta-exact .btn-coffee-pill {
+        min-height: 30px;
+        padding: 8px 6px 8px 46px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 46px;
+        left: -5px;
+        top: -13px;
+      }
+    }
+    @media (max-width: 480px) {
+      .site-footer .footer-grid-exact {
+        grid-template-columns: 0.92fr 0.95fr 0.95fr 1.38fr;
+        gap: 16px 5px;
+      }
+      .site-footer .footer-col-1 .company-title {
+        font-size: 0.66rem;
+      }
+      .site-footer .footer-nav-col h4 {
+        font-size: 0.65rem;
+      }
+      .site-footer .footer-exact-links li a {
+        font-size: 0.63rem;
+        line-height: 1.4;
+      }
+      .foot-cta-exact .footer-seal {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 21px;
+      }
+      .foot-cta-exact .seal-core {
+        width: 54px;
+        height: 54px;
+      }
+      .foot-cta-exact .btn-coffee-pill {
+        padding: 7px 5px 7px 38px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 37px;
+        left: -4px;
+        top: -10px;
+      }
+    }
+    @media (max-width: 380px) {
+      .site-footer .footer-grid-exact {
+        grid-template-columns: 0.9fr 0.92fr 0.92fr 1.46fr;
+        gap: 14px 5px;
+      }
+      .site-footer .footer-nav-col h4 {
+        font-size: 0.6rem;
+        letter-spacing: 0.03em;
+      }
+      .site-footer .footer-exact-links li a {
+        font-size: 0.59rem;
+        font-weight: 700;
+      }
+      .foot-cta-exact .footer-seal {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 19px;
+      }
+      .foot-cta-exact .seal-core {
+        width: 49px;
+        height: 49px;
+      }
+      .foot-cta-exact .btn-coffee-pill {
+        padding: 6px 4px 6px 34px;
+        font-size: 0.4rem;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 33px;
+        left: -3px;
+        top: -9px;
+      }
+    }
+
+    /* Catalogue detail tags removed by client request. Keep the wishlist
+       action aligned to the bottom of each equal-height card. */
+    .catalog-card-tags {
+      display: none !important;
+    }
+    .catalog-card .wishlist-btn {
+      margin-top: auto !important;
+    }
   </style>
 </head>
 <body>
@@ -4527,53 +5241,6 @@
   </section>
 
 
-  <!-- ==========================================================================
-       COMPLETE LOOKBOOK & IMAGE GALLERY (ALL 100 CHATGPT IMAGES INTEGRATED)
-       ========================================================================== -->
-  <section class="lookbook-section" id="lookbook">
-    <div class="container">
-      <div class="section-header-center">
-        <div class="hd-eyebrow">
-          <span class="line"></span>
-          <span>Official Event Lookbook</span>
-        </div>
-        <h2 class="heading-display">
-          Build your wishlist from <span class="text-gold">100 event attractions.</span>
-        </h2>
-        <p class="section-lead" style="margin: 12px auto 0;">
-          Every attraction includes a beautiful photo, catalogue number and short description. Wishlist items are ticked automatically in the enquiry form.
-        </p>
-      </div>
-
-      <div class="wishlist-toolbar" aria-live="polite">
-        <div class="wishlist-summary">
-          <span class="wishlist-heart" aria-hidden="true">♥</span>
-          <span>Wishlist</span>
-          <strong id="wishlist-count">0</strong>
-          <span>saved items</span>
-        </div>
-        <div class="wishlist-actions">
-          <button type="button" class="wishlist-action-btn" id="wishlist-view-btn">View wishlist</button>
-          <button type="button" class="wishlist-action-btn" id="wishlist-clear-btn">Clear</button>
-          <button type="button" class="wishlist-action-btn primary" id="wishlist-enquiry-btn">Review in enquiry form</button>
-        </div>
-      </div>
-
-      <div class="wishlist-panel" id="wishlist-panel" hidden>
-        <h3>Your event wishlist</h3>
-        <div class="wishlist-chips" id="wishlist-chips"></div>
-        <p class="wishlist-empty" id="wishlist-empty">No items saved yet. Tap “Add to Wishlist” on any attraction.</p>
-      </div>
-
-      <div class="lookbook-grid wishlist-catalog-grid" id="lookbook-grid" aria-live="polite"></div>
-
-      <div class="catalog-load-actions">
-        <button type="button" class="catalog-load-btn" id="lookbook-load-more">Load more attractions</button>
-        <button type="button" class="catalog-load-btn secondary" id="lookbook-show-all">Show all 100</button>
-        <span class="catalog-showing-text" id="lookbook-showing"></span>
-      </div>
-    </div>
-  </section>
 
   <!-- ==========================================================================
        OCCASIONS SECTION (ENTRY #43 STRUCTURE)
@@ -4941,6 +5608,35 @@
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container"></div>
 
+  <!-- Floating Wishlist Tray & Selected Items Drawer -->
+  <button type="button" class="wishlist-tray-btn" id="wishlist-tray-btn" aria-haspopup="dialog" aria-controls="wishlist-drawer" aria-expanded="false" aria-label="Open wishlist" hidden>
+    <span class="wishlist-tray-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </span>
+    <span>Wishlist</span>
+    <strong class="wishlist-tray-count" id="wishlist-tray-count">0</strong>
+  </button>
+  <div class="wishlist-drawer-backdrop" id="wishlist-drawer-backdrop" hidden></div>
+  <aside class="wishlist-drawer" id="wishlist-drawer" role="dialog" aria-modal="true" aria-labelledby="wishlist-drawer-title" hidden>
+    <div class="wishlist-drawer-header">
+      <div>
+        <span class="wishlist-drawer-eyebrow">Your shortlist</span>
+        <h3 class="wishlist-drawer-title" id="wishlist-drawer-title">Wishlist <strong>(<span id="wishlist-drawer-count">0</span>)</strong></h3>
+      </div>
+      <button type="button" class="wishlist-drawer-close" id="wishlist-drawer-close" aria-label="Close wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <p class="wishlist-drawer-copy">Review the attractions you selected, remove anything you no longer need, then continue to the booking enquiry form.</p>
+    <div class="wishlist-drawer-items" id="wishlist-drawer-items">
+      <p class="wishlist-drawer-empty" id="wishlist-drawer-empty">Your wishlist is empty. Tap “Add to Wishlist” on any attraction to save it here.</p>
+    </div>
+    <div class="wishlist-drawer-footer">
+      <button type="button" class="wishlist-drawer-action" id="wishlist-drawer-clear">Clear all</button>
+      <button type="button" class="wishlist-drawer-action primary" id="wishlist-book-btn">Book selected items</button>
+    </div>
+  </aside>
+
 
   <!-- ==========================================================================
        JAVASCRIPT LOGIC & DATABASE ENGINE
@@ -5096,24 +5792,6 @@
       'cat-9': 'Pampering',
       'cat-10': 'Big-Ticket'
     };
-    const CATALOG_CARD_TAGS = {
-      'cat-1': ['Foyer or ballroom', 'Supervised', '45-min setup'],
-      'cat-2': ['Game host', 'Prizes included', '230V power'],
-      'cat-3': ['Instant sharing', 'Studio lighting', 'Live attendant'],
-      'cat-4': ['Professional artists', 'Costumes included', 'Roaming act'],
-      'cat-5': ['Wireless system', 'DJ booth styling', '50-1,500 guests'],
-      'cat-6': ['Certified team', 'Custom menu', 'Branded counter'],
-      'cat-7': ['Foyer installation', 'LED accents', 'Photo focal point'],
-      'cat-8': ['Tournament operator', 'Live leaderboard', 'Corporate groups'],
-      'cat-9': ['Licensed specialists', 'Luxury setup', 'Custom gift options'],
-      'cat-10': ['4.5m ceiling', 'Certified operators', 'Venue coordination']
-    };
-    function catalogCardTagsHTML(item) {
-      const tags = CATALOG_CARD_TAGS[item.categoryKey] || [];
-      if (!tags.length) return '';
-      return '<div class="catalog-card-tags" aria-label="Rental details">' +
-        tags.map(tag => '<span class="catalog-card-tag">' + tag + '</span>').join('') + '</div>';
-    }
 
     function getFeaturedCatalogKeys() {
       const categoryKeys = Object.keys(CATALOG_CATEGORY_LABELS);
@@ -5201,7 +5879,6 @@
             <div class="catalog-card-topline"><span class="catalog-number">No. ${itemNo}</span><span class="catalog-category-label">${CATALOG_CATEGORY_LABELS[item.categoryKey] || item.cat}</span></div>
             <h3 class="service-card-title">${item.title}</h3>
             <p class="service-card-desc">${formatCatalogDesc(item.shortDesc || item.desc)}</p>
-            ${catalogCardTagsHTML(item)}
             <button type="button" class="wishlist-btn" data-wishlist-key="${key}" aria-pressed="false" onclick="toggleWishlist(event, '${key}')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
               <span>Add to Wishlist</span>
@@ -5612,7 +6289,6 @@
 
       const STORAGE_KEY = 'am-party-wishlist-preview-v1';
       const allKeys = Object.keys(catalogData);
-      const total = allKeys.length;
       const wishlist = new Set();
       try {
         (JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')).forEach((key) => {
@@ -5620,14 +6296,6 @@
         });
       } catch (error) {}
 
-      const grid = document.getElementById('lookbook-grid');
-      const loadMoreBtn = document.getElementById('lookbook-load-more');
-      const showAllBtn = document.getElementById('lookbook-show-all');
-      const showingEl = document.getElementById('lookbook-showing');
-      const countEl = document.getElementById('wishlist-count');
-      const panel = document.getElementById('wishlist-panel');
-      const chipsEl = document.getElementById('wishlist-chips');
-      const emptyEl = document.getElementById('wishlist-empty');
       const dropdownRoot = document.getElementById('servicesDropdown');
       const dropdownToggle = document.getElementById('servicesDropdownToggle');
       const dropdownPanel = document.getElementById('servicesDropdownPanel');
@@ -5635,10 +6303,18 @@
       const dropdownSearch = document.getElementById('servicesDropdownSearch');
       const dropdownCount = document.getElementById('servicesDropdownCount');
       const dropdownLabel = document.getElementById('servicesDropdownLabel');
-      const catalogueMobileMQ = window.matchMedia('(max-width: 900px)');
-      const cataloguePhoneMQ = window.matchMedia('(max-width: 640px)');
-      const pageSize = cataloguePhoneMQ.matches ? 6 : 10;
-      let visibleCount = catalogueMobileMQ.matches ? Math.min(pageSize, total) : total;
+      const wishlistTrayBtn = document.getElementById('wishlist-tray-btn');
+      const wishlistTrayCount = document.getElementById('wishlist-tray-count');
+      const wishlistDrawer = document.getElementById('wishlist-drawer');
+      const wishlistDrawerBackdrop = document.getElementById('wishlist-drawer-backdrop');
+      const wishlistDrawerItems = document.getElementById('wishlist-drawer-items');
+      const wishlistDrawerEmpty = document.getElementById('wishlist-drawer-empty');
+      const wishlistDrawerCount = document.getElementById('wishlist-drawer-count');
+      const wishlistDrawerClose = document.getElementById('wishlist-drawer-close');
+      const wishlistDrawerClear = document.getElementById('wishlist-drawer-clear');
+      const wishlistBookBtn = document.getElementById('wishlist-book-btn');
+      let wishlistDrawerCloseTimer = null;
+      let wishlistLastFocus = null;
           const CATALOG_CATEGORY_LABELS = {
             'cat-1': 'Giant Games',
             'cat-2': 'Carnival Games',
@@ -5651,26 +6327,6 @@
             'cat-9': 'Pampering',
             'cat-10': 'Big-Ticket'
           };
-          const CATALOG_CARD_TAGS = {
-            'cat-1': ['Foyer or ballroom', 'Supervised', '45-min setup'],
-            'cat-2': ['Game host', 'Prizes included', '230V power'],
-            'cat-3': ['Instant sharing', 'Studio lighting', 'Live attendant'],
-            'cat-4': ['Professional artists', 'Costumes included', 'Roaming act'],
-            'cat-5': ['Wireless system', 'DJ booth styling', '50-1,500 guests'],
-            'cat-6': ['Certified team', 'Custom menu', 'Branded counter'],
-            'cat-7': ['Foyer installation', 'LED accents', 'Photo focal point'],
-            'cat-8': ['Tournament operator', 'Live leaderboard', 'Corporate groups'],
-            'cat-9': ['Licensed specialists', 'Luxury setup', 'Custom gift options'],
-            'cat-10': ['4.5m ceiling', 'Certified operators', 'Venue coordination']
-          };
-          function catalogCardTagsHTML(item) {
-            const tags = CATALOG_CARD_TAGS[item.categoryKey] || [];
-            if (!tags.length) return '';
-            return '<div class="catalog-card-tags" aria-label="Rental details">' +
-              tags.map(tag => '<span class="catalog-card-tag">' + tag + '</span>').join('') + '</div>';
-          }
-
-      const heartSVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
 
       function itemNo(key) {
         const item = catalogData[key] || {};
@@ -5687,59 +6343,95 @@
         }[ch]));
       }
 
-      function shortText(text) {
-        let clean = String(text || '').replace(/\s+/g, ' ').trim();
-        if (!clean) return '';
-        clean = clean.charAt(0).toUpperCase() + clean.slice(1);
-        if (clean.length <= 150) return /[.!?…]$/.test(clean) ? clean : clean + '.';
-        const cut = clean.slice(0, 147);
-        const space = cut.lastIndexOf(' ');
-        return (space > 80 ? cut.slice(0, space) : cut).trim() + '…';
-      }
-
       function saveWishlist() {
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...wishlist])); } catch (error) {}
       }
 
-      function wishlistButtonHTML(key) {
-        const active = wishlist.has(key);
-        return '<button type="button" class="wishlist-btn' + (active ? ' is-active' : '') + '" data-wishlist-key="' + key + '" aria-pressed="' + active + '" onclick="toggleWishlist(event, \'' + key + '\')">' + heartSVG + '<span>' + (active ? 'Wishlisted' : 'Add to Wishlist') + '</span></button>';
-      }
-
-      function createCatalogueCard(key) {
-        const item = catalogData[key];
-        const card = document.createElement('article');
-        card.className = 'service-card catalog-card' + (wishlist.has(key) ? ' is-wishlisted' : '');
-        card.dataset.catalogKey = key;
-        card.innerHTML =
-          '<div class="service-card-img-wrap">' +
-            '<img src="' + item.img + '" alt="' + escapeHTML(item.title) + '" loading="lazy">' +
-          '</div>' +
-          '<div class="service-card-body">' +
-            '<div class="catalog-card-topline"><span class="catalog-number">No. ' + itemNo(key) + '</span><span class="catalog-category-label">' + escapeHTML(CATALOG_CATEGORY_LABELS[item.categoryKey] || item.cat) + '</span></div>' +
-            '<h3 class="service-card-title">' + escapeHTML(item.title) + '</h3>' +
-            '<p class="service-card-desc">' + escapeHTML(shortText(item.shortDesc || item.desc)) + '</p>' +
-            catalogCardTagsHTML(item) +
-            wishlistButtonHTML(key) +
-          '</div>';
-
-        return card;
-      }
-
-      function renderWishlistPanel() {
-        if (!chipsEl || !emptyEl) return;
+      function renderWishlistDrawer() {
         const selected = allKeys.filter((key) => wishlist.has(key));
-        chipsEl.innerHTML = '';
-        emptyEl.hidden = selected.length > 0;
+        const count = selected.length;
+
+        if (wishlistTrayCount) wishlistTrayCount.textContent = String(count);
+        if (wishlistDrawerCount) wishlistDrawerCount.textContent = String(count);
+        if (wishlistTrayBtn) {
+          wishlistTrayBtn.hidden = count === 0;
+          wishlistTrayBtn.classList.toggle('is-visible', count > 0);
+          wishlistTrayBtn.setAttribute(
+            'aria-label',
+            'Open wishlist, ' + count + (count === 1 ? ' item selected' : ' items selected')
+          );
+        }
+        document.body.classList.toggle('has-wishlist-items', count > 0);
+
+        if (wishlistDrawerClear) wishlistDrawerClear.disabled = count === 0;
+        if (wishlistBookBtn) wishlistBookBtn.disabled = count === 0;
+        if (!wishlistDrawerItems || !wishlistDrawerEmpty) return;
+
+        wishlistDrawerItems.innerHTML = '';
+        wishlistDrawerEmpty.hidden = count > 0;
+        wishlistDrawerItems.appendChild(wishlistDrawerEmpty);
+
         selected.forEach((key) => {
-          const chip = document.createElement('button');
-          chip.type = 'button';
-          chip.className = 'wishlist-chip';
-          chip.textContent = '#' + itemNo(key) + ' ' + catalogData[key].title + ' ×';
-          chip.title = 'Remove from wishlist';
-          chip.addEventListener('click', () => setWishlist(key, false));
-          chipsEl.appendChild(chip);
+          const item = catalogData[key];
+          const row = document.createElement('article');
+          row.className = 'wishlist-drawer-item';
+
+          const image = document.createElement('img');
+          image.className = 'wishlist-drawer-thumb';
+          image.src = item.img;
+          image.alt = item.title;
+          image.loading = 'lazy';
+
+          const info = document.createElement('div');
+          const meta = document.createElement('span');
+          meta.className = 'wishlist-drawer-item-meta';
+          meta.textContent = 'No. ' + itemNo(key) + ' - ' + (CATALOG_CATEGORY_LABELS[item.categoryKey] || item.cat || 'Attraction');
+          const title = document.createElement('span');
+          title.className = 'wishlist-drawer-item-title';
+          title.textContent = item.title;
+          info.append(meta, title);
+
+          const remove = document.createElement('button');
+          remove.type = 'button';
+          remove.className = 'wishlist-drawer-remove';
+          remove.textContent = '×';
+          remove.title = 'Remove ' + item.title + ' from wishlist';
+          remove.setAttribute('aria-label', remove.title);
+          remove.addEventListener('click', () => setWishlist(key, false));
+
+          row.append(image, info, remove);
+          wishlistDrawerItems.appendChild(row);
         });
+      }
+
+      function openWishlistDrawer() {
+        if (!wishlistDrawer || !wishlistDrawerBackdrop) return;
+        renderWishlistDrawer();
+        wishlistLastFocus = document.activeElement;
+        if (wishlistDrawerCloseTimer) clearTimeout(wishlistDrawerCloseTimer);
+        wishlistDrawerBackdrop.hidden = false;
+        wishlistDrawer.hidden = false;
+        requestAnimationFrame(() => {
+          wishlistDrawerBackdrop.classList.add('is-open');
+          wishlistDrawer.classList.add('is-open');
+        });
+        document.body.classList.add('wishlist-drawer-open');
+        if (wishlistTrayBtn) wishlistTrayBtn.setAttribute('aria-expanded', 'true');
+        if (wishlistDrawerClose) setTimeout(() => wishlistDrawerClose.focus(), 60);
+      }
+
+      function closeWishlistDrawer() {
+        if (!wishlistDrawer || wishlistDrawer.hidden) return;
+        wishlistDrawer.classList.remove('is-open');
+        if (wishlistDrawerBackdrop) wishlistDrawerBackdrop.classList.remove('is-open');
+        document.body.classList.remove('wishlist-drawer-open');
+        if (wishlistTrayBtn) wishlistTrayBtn.setAttribute('aria-expanded', 'false');
+        wishlistDrawerCloseTimer = setTimeout(() => {
+          wishlistDrawer.hidden = true;
+          if (wishlistDrawerBackdrop) wishlistDrawerBackdrop.hidden = true;
+          if (wishlistTrayBtn && !wishlistTrayBtn.hidden) wishlistTrayBtn.focus();
+          else if (wishlistLastFocus && typeof wishlistLastFocus.focus === 'function') wishlistLastFocus.focus();
+        }, 230);
       }
 
 
@@ -5812,8 +6504,7 @@
           const card = btn.closest('.catalog-card');
           if (card) card.classList.toggle('is-wishlisted', active);
         });
-        if (countEl) countEl.textContent = String(wishlist.size);
-        renderWishlistPanel();
+        renderWishlistDrawer();
         syncServicesDropdown();
       }
 
@@ -5841,102 +6532,93 @@
       };
       window.syncWishlistButtons = syncWishlistButtons;
 
-      function renderLookbookCatalogue() {
-        if (!grid) return;
-        grid.innerHTML = '';
-        allKeys.slice(0, visibleCount).forEach((key) => grid.appendChild(createCatalogueCard(key)));
-        if (showingEl) showingEl.textContent = catalogueMobileMQ.matches ? 'Showing ' + Math.min(visibleCount, total) + ' of ' + total + ' attractions' : 'Showing all ' + total + ' attractions';
-        if (loadMoreBtn) {
-          loadMoreBtn.disabled = visibleCount >= total;
-          loadMoreBtn.textContent = visibleCount >= total ? 'All attractions shown' : 'See more attractions';
-        }
-        if (showAllBtn) {
-          showAllBtn.disabled = visibleCount >= total;
-          showAllBtn.textContent = 'Show all ' + total;
-        }
+      function clearWishlist() {
+        wishlist.clear();
+        saveWishlist();
         syncWishlistButtons();
+        if (window.showToast) showToast('Wishlist cleared');
       }
 
-      if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', () => {
-          visibleCount = Math.min(total, visibleCount + pageSize);
-          renderLookbookCatalogue();
+      function reviewWishlistInEnquiryForm() {
+        const selected = allKeys.filter((key) => wishlist.has(key));
+        if (!selected.length) {
+          if (window.showToast) showToast('Please add at least one item to your wishlist first.');
+          return;
+        }
+
+        const pills = document.getElementById('pillsContainer');
+        if (pills) {
+          selected.forEach((key) => {
+            const title = catalogData[key].title;
+            let pill = Array.from(pills.children).find((child) => child.textContent.trim().toLowerCase() === title.toLowerCase());
+            if (!pill) {
+              pill = document.createElement('span');
+              pill.className = 'quick-pill';
+              pill.textContent = title;
+              pill.onclick = function() { if (window.togglePill) togglePill(this); };
+              pills.prepend(pill);
+            }
+            pill.classList.add('selected');
+          });
+        }
+
+        const message = document.getElementById('message');
+        if (message) {
+          const list = selected.map((key) => '#' + itemNo(key) + ' ' + catalogData[key].title).join('\n');
+          const block = 'My event wishlist:\n' + list;
+          const existing = message.value || '';
+          message.value = existing.includes('My event wishlist:')
+            ? existing.replace(/My event wishlist:[\s\S]*?(?=\n\n|$)/, block)
+            : (existing.trim() ? existing.trim() + '\n\n' + block : block);
+        }
+
+        syncServicesDropdown();
+        if (dropdownPanel && dropdownRoot && dropdownToggle) {
+          setTimeout(() => {
+            dropdownPanel.hidden = false;
+            dropdownRoot.classList.add('is-open');
+            dropdownToggle.setAttribute('aria-expanded', 'true');
+          }, 650);
+        }
+        if (window.showToast) showToast('♥ Wishlist is ticked in the enquiry form');
+        const contact = document.getElementById('contact');
+        if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      if (wishlistTrayBtn) wishlistTrayBtn.addEventListener('click', openWishlistDrawer);
+      if (wishlistDrawerClose) wishlistDrawerClose.addEventListener('click', closeWishlistDrawer);
+      if (wishlistDrawerBackdrop) wishlistDrawerBackdrop.addEventListener('click', closeWishlistDrawer);
+      if (wishlistDrawerClear) {
+        wishlistDrawerClear.addEventListener('click', clearWishlist);
+      }
+      if (wishlistBookBtn) {
+        wishlistBookBtn.addEventListener('click', () => {
+          closeWishlistDrawer();
+          setTimeout(reviewWishlistInEnquiryForm, 240);
         });
       }
-      if (showAllBtn) {
-        showAllBtn.addEventListener('click', () => {
-          visibleCount = total;
-          renderLookbookCatalogue();
-        });
-      }
-
-      const viewBtn = document.getElementById('wishlist-view-btn');
-      if (viewBtn && panel) {
-        viewBtn.addEventListener('click', () => {
-          panel.hidden = !panel.hidden;
-          viewBtn.textContent = panel.hidden ? 'View wishlist' : 'Hide wishlist';
-        });
-      }
-
-      const clearBtn = document.getElementById('wishlist-clear-btn');
-      if (clearBtn) {
-        clearBtn.addEventListener('click', () => {
-          wishlist.clear();
-          saveWishlist();
-          syncWishlistButtons();
-          if (window.showToast) showToast('Wishlist cleared');
-        });
-      }
-
-      const enquiryBtn = document.getElementById('wishlist-enquiry-btn');
-      if (enquiryBtn) {
-        enquiryBtn.addEventListener('click', () => {
-          const selected = allKeys.filter((key) => wishlist.has(key));
-          if (!selected.length) {
-            if (panel) panel.hidden = false;
-            if (window.showToast) showToast('Please add at least one item to your wishlist first.');
-            return;
-          }
-
-          const pills = document.getElementById('pillsContainer');
-          if (pills) {
-            selected.forEach((key) => {
-              const title = catalogData[key].title;
-              let pill = Array.from(pills.children).find((child) => child.textContent.trim().toLowerCase() === title.toLowerCase());
-              if (!pill) {
-                pill = document.createElement('span');
-                pill.className = 'quick-pill';
-                pill.textContent = title;
-                pill.onclick = function() { if (window.togglePill) togglePill(this); };
-                pills.prepend(pill);
-              }
-              pill.classList.add('selected');
-            });
-          }
-
-          const message = document.getElementById('message');
-          if (message) {
-            const list = selected.map((key) => '#' + itemNo(key) + ' ' + catalogData[key].title).join('\n');
-            const block = 'My event wishlist:\n' + list;
-            const existing = message.value || '';
-            message.value = existing.includes('My event wishlist:')
-              ? existing.replace(/My event wishlist:[\s\S]*?(?=\n\n|$)/, block)
-              : (existing.trim() ? existing.trim() + '\n\n' + block : block);
-          }
-
-          syncServicesDropdown();
-          if (dropdownPanel && dropdownRoot && dropdownToggle) {
-            setTimeout(() => {
-              dropdownPanel.hidden = false;
-              dropdownRoot.classList.add('is-open');
-              dropdownToggle.setAttribute('aria-expanded', 'true');
-            }, 650);
-          }
-          if (window.showToast) showToast('♥ Wishlist is ticked in the enquiry form');
-          const contact = document.getElementById('contact');
-          if (contact) contact.scrollIntoView({ behavior: 'smooth' });
-        });
-      }
+      document.addEventListener('keydown', (event) => {
+        if (!wishlistDrawer || wishlistDrawer.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeWishlistDrawer();
+          return;
+        }
+        if (event.key !== 'Tab') return;
+        const focusable = Array.from(
+          wishlistDrawer.querySelectorAll('button:not([disabled]), a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+        ).filter((element) => !element.hidden && element.offsetParent !== null);
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
 
       if (dropdownToggle && dropdownPanel && dropdownRoot) {
         dropdownToggle.addEventListener('click', () => {
@@ -5957,9 +6639,8 @@
       if (dropdownSearch) dropdownSearch.addEventListener('input', filterServicesDropdown);
 
       buildServicesDropdown();
-      renderLookbookCatalogue();
       syncWishlistButtons();
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e00e6c7844c3a2',t:'MTc5MjU4MzU0OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e066aa4ca826ba',t:'MTc5MjU4NzE2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
