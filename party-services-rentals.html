@@ -5058,6 +5058,151 @@
     }
   </style>
 
+
+  <style id="catalog-see-more-card-and-form-title">
+    /* Client revision: SEE MORE is a card inside the services grid,
+       occupying the next available space beside the visible cards. */
+    .services-section .services-grid-12 .catalog-see-more-card {
+      position: relative;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      margin: 0;
+      padding: clamp(24px, 3vw, 38px);
+      overflow: hidden;
+      border: 1px solid rgba(255, 206, 27, 0.58);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(255, 206, 27, 0.3) 0, rgba(255, 206, 27, 0) 34%),
+        radial-gradient(circle at 8% 96%, rgba(0, 112, 220, 0.32) 0, rgba(0, 112, 220, 0) 38%),
+        linear-gradient(155deg, #0a2a5e 0%, #071735 68%, #041126 100%);
+      color: #ffffff;
+      box-shadow: 0 18px 38px rgba(7, 23, 53, 0.22);
+      font: inherit;
+      text-align: center;
+      cursor: pointer;
+      isolation: isolate;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+    .services-section .services-grid-12 .catalog-see-more-card::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      z-index: -1;
+      border: 1px dashed rgba(255, 255, 255, 0.22);
+      border-radius: 14px;
+      pointer-events: none;
+    }
+    .services-section .services-grid-12 .catalog-see-more-card[hidden] {
+      display: none !important;
+    }
+    .services-section .services-grid-12 .catalog-see-more-card:hover,
+    .services-section .services-grid-12 .catalog-see-more-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: #ffce1b;
+      box-shadow: 0 24px 46px rgba(7, 23, 53, 0.28);
+      outline: none;
+    }
+    .catalog-see-more-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      max-width: 240px;
+    }
+    .catalog-see-more-kicker {
+      color: #ffce1b;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .catalog-see-more-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #ffce1b;
+      color: #071735;
+      box-shadow: 0 12px 26px rgba(255, 206, 27, 0.28);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1;
+      transition: transform 0.22s ease;
+    }
+    .catalog-see-more-card:hover .catalog-see-more-icon,
+    .catalog-see-more-card:focus-visible .catalog-see-more-icon {
+      transform: translateY(3px) scale(1.05);
+    }
+    .catalog-see-more-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.55rem, 2.3vw, 2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 0.045em;
+    }
+    .catalog-see-more-card .catalog-showing-text {
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.82rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    /* Named enquiry form introduction. */
+    .homepage-form-intro {
+      max-width: 840px;
+      margin: 0 auto 30px;
+      text-align: center;
+    }
+    .homepage-form-intro .hd-eyebrow {
+      justify-content: center;
+    }
+    .homepage-form-intro .section-lead {
+      max-width: 690px;
+      margin: 12px auto 0;
+    }
+
+    @media (max-width: 700px) {
+      .services-section .services-grid-12 .catalog-see-more-card {
+        padding: 20px 14px;
+        border-radius: 18px;
+      }
+      .services-section .services-grid-12 .catalog-see-more-card::before {
+        inset: 8px;
+        border-radius: 12px;
+      }
+      .catalog-see-more-inner {
+        gap: 9px;
+      }
+      .catalog-see-more-kicker {
+        font-size: 0.55rem;
+        letter-spacing: 0.14em;
+      }
+      .catalog-see-more-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.45rem;
+      }
+      .catalog-see-more-title {
+        font-size: 1.22rem;
+      }
+      .catalog-see-more-card .catalog-showing-text {
+        font-size: 0.68rem;
+      }
+      .homepage-form-intro {
+        margin-bottom: 22px;
+      }
+    }
+  </style>
+
 </head>
 <body>
 
@@ -5285,10 +5430,6 @@
       <!-- Dynamic Services Cards Grid (ChatGPT catalogue items) -->
       <div class="services-grid-12" id="services-grid" aria-live="polite"></div>
 
-      <div class="catalog-load-actions" id="catalogLoadActions">
-        <button type="button" class="catalog-load-btn" id="catalogSeeMoreBtn">SEE MORE</button>
-        <span class="catalog-showing-text" id="catalogShowingText" aria-live="polite">Showing 15 of 100</span>
-      </div>
 
     </div>
   </section>
@@ -5301,7 +5442,18 @@
        ========================================================================== -->
   <section class="homepage-contact-section" id="contact" aria-labelledby="homepage-contact-heading">
     <div class="container">
-      <h2 class="homepage-sr-only" id="homepage-contact-heading">Contact Advertising &amp; More</h2>
+      <div class="section-header-center homepage-form-intro">
+        <div class="hd-eyebrow">
+          <span class="line"></span>
+          <span>Start Your Enquiry</span>
+        </div>
+        <h2 class="heading-display" id="homepage-contact-heading">
+          Let’s plan your event <span class="text-gold">over coffee.</span>
+        </h2>
+        <p class="section-lead">
+          Tell us what you’re planning, choose the services you need, and our team will bring everything together under one happy roof.
+        </p>
+      </div>
       <div class="homepage-form-card">
         <form id="homepage-contact-form" novalidate>
           <div class="homepage-form-row">
@@ -5443,53 +5595,6 @@
           </button>
           <p class="homepage-form-status" id="homepageFormStatus" role="status" aria-live="polite" hidden></p>
         </form>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ==========================================================================
-       WHY CHOOSE US (ENTRY #43 STRUCTURE)
-       ========================================================================== -->
-  <section class="why-section" id="whyus">
-    <div class="container">
-      <div class="section-header-center">
-        <div class="hd-eyebrow">
-          <span class="line"></span>
-          <span>The Advertising &amp; More Difference</span>
-        </div>
-        <h2 class="heading-display">
-          More than <span class="text-gold">just rentals.</span>
-        </h2>
-        <p class="section-lead" style="margin: 12px auto 0;">
-          We take pride in flawless technical execution, immaculate aesthetic presentation, and end-to-end event management support.
-        </p>
-      </div>
-
-      <div class="why-grid-4">
-        <div class="why-card">
-          <div class="why-icon-box">🏆</div>
-          <h3>Quality Equipment</h3>
-          <p>Every tent canvas, Chiavari chair, audio rig, and game is rigorously inspected, polished, and maintained to luxury standards.</p>
-        </div>
-
-        <div class="why-card">
-          <div class="why-icon-box">⚡</div>
-          <h3>Reliable Service</h3>
-          <p>On-time delivery, certified electricians, backup generator contingencies, and dedicated event stewards on standby throughout.</p>
-        </div>
-
-        <div class="why-card">
-          <div class="why-icon-box">🎪</div>
-          <h3>Events of All Sizes</h3>
-          <p>From intimate 50-guest VIP anniversary lounges to 3,000-guest outdoor festival productions and high-profile annual dinners.</p>
-        </div>
-
-        <div class="why-card">
-          <div class="why-icon-box">🤝</div>
-          <h3>A Team That Cares</h3>
-          <p>Passionate event architects who handle permitting, spatial flow, risk mitigation, and guest delight with meticulous attention.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -5701,9 +5806,19 @@
     const servicesGrid = document.getElementById('services-grid');
     const currentCountEl = document.getElementById('currentCount');
     const totalCountEl = document.getElementById('totalCount');
-    const catalogLoadActions = document.getElementById('catalogLoadActions');
-    const catalogSeeMoreBtn = document.getElementById('catalogSeeMoreBtn');
-    const catalogShowingText = document.getElementById('catalogShowingText');
+    const catalogSeeMoreBtn = document.createElement('button');
+    catalogSeeMoreBtn.type = 'button';
+    catalogSeeMoreBtn.id = 'catalogSeeMoreBtn';
+    catalogSeeMoreBtn.className = 'service-card catalog-see-more-card';
+    catalogSeeMoreBtn.innerHTML = `
+      <span class="catalog-see-more-inner">
+        <span class="catalog-see-more-kicker">Keep Exploring</span>
+        <span class="catalog-see-more-icon" aria-hidden="true">↓</span>
+        <span class="catalog-see-more-title">SEE MORE</span>
+        <span class="catalog-showing-text" id="catalogShowingText" aria-live="polite">Showing 15 of 100</span>
+      </span>
+    `;
+    const catalogShowingText = catalogSeeMoreBtn.querySelector('#catalogShowingText');
     const CATALOG_PAGE_SIZE = 15;
     let currentCategoryKey = 'featured';
     let searchQuery = '';
@@ -5745,6 +5860,14 @@
       return getMixedCatalogKeys().slice(0, CATALOG_PAGE_SIZE);
     }
 
+    function syncCatalogSeeMoreCardHeight() {
+      if (!catalogSeeMoreBtn || catalogSeeMoreBtn.parentNode !== servicesGrid || catalogSeeMoreBtn.hidden) return;
+      const visibleCards = servicesGrid.querySelectorAll('.catalog-card');
+      const referenceCard = visibleCards[visibleCards.length - 1];
+      if (!referenceCard) return;
+      catalogSeeMoreBtn.style.height = `${Math.round(referenceCard.getBoundingClientRect().height)}px`;
+    }
+
     function updateCatalogLoadActions() {
       const total = currentFilteredKeys.length;
       const visible = Math.min(catalogVisibleCount, total);
@@ -5753,8 +5876,23 @@
       if (catalogShowingText) {
         catalogShowingText.textContent = total ? `Showing ${visible} of ${total}` : '';
       }
-      if (catalogLoadActions) catalogLoadActions.hidden = total === 0;
-      if (catalogSeeMoreBtn) catalogSeeMoreBtn.hidden = visible >= total;
+      if (catalogSeeMoreBtn) {
+        const hasMore = total > visible;
+        catalogSeeMoreBtn.hidden = !hasMore;
+        if (hasMore) {
+          if (catalogSeeMoreBtn.parentNode !== servicesGrid || servicesGrid.lastElementChild !== catalogSeeMoreBtn) {
+            servicesGrid.appendChild(catalogSeeMoreBtn);
+          }
+          catalogSeeMoreBtn.setAttribute(
+            'aria-label',
+            `See more party services and rentals. Showing ${visible} of ${total}.`
+          );
+          syncCatalogSeeMoreCardHeight();
+          requestAnimationFrame(syncCatalogSeeMoreCardHeight);
+        } else if (catalogSeeMoreBtn.parentNode) {
+          catalogSeeMoreBtn.remove();
+        }
+      }
     }
 
     function createCatalogCard(key) {
@@ -5826,6 +5964,8 @@
       appendCatalogCards(items.slice(0, catalogVisibleCount));
       updateCatalogLoadActions();
     }
+
+    window.addEventListener('resize', syncCatalogSeeMoreCardHeight);
 
     if (catalogSeeMoreBtn) {
       catalogSeeMoreBtn.addEventListener('click', () => {
@@ -6754,5 +6894,5 @@
       syncWishlistButtons();
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e144cb0c052154',t:'MTc5MjU5NjI2MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e17205899a26ba',t:'MTc5MjU5ODExNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
