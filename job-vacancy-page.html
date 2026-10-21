@@ -2447,6 +2447,641 @@
       .foot-cta-exact .footer-email-link { font-size: 0.69rem; }
     }
 </style>
+
+  <style id="party-hero-footer-match">
+    /* Party Services match: the Careers page reuses the Party page's
+       mobile hero order and the exact shared footer responsive rules. */
+    .hero-lead--mobile {
+      display: none;
+    }
+    .careers-hero .hero-cta-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .footer-grid-exact {
+      grid-template-columns: 1.27fr 1fr 1fr 1.27fr;
+    }
+
+    /* ==========================================================================
+       MOBILE / TABLET FOOTER — SAME 4 COLUMNS AS DESKTOP (client request)
+       Col 1 Brand · Col 2 EXPLORE · Col 3 COMPANY · Col 4 Seal + Coffee + Email
+       - The 4 columns never stack; everything scales down step by step.
+       - Footer text stays SOLID & READABLE (bigger, semi-bold, bright —
+         the pale thin link colour looked faded/blank at phone sizes).
+       - "CLICK FOR COFFEE" always stays on ONE line (column 4 is wider
+         on phones and the pill/cup/font are sized to fit it).
+       ========================================================================== */
+    /* Small laptops: scale the pill a little so one-line text fits column 4 fully */
+    @media (min-width: 1025px) and (max-width: 1150px) {
+      .foot-cta-exact .btn-coffee-pill { padding: 12px 22px 12px 88px; font-size: 0.82rem; }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge { width: 88px; top: -22px; }
+    }
+
+    @media (max-width: 1024px) {
+      .footer-grid-exact {
+        display: grid;
+        grid-template-columns: 1.27fr 1fr 1fr 1.27fr; /* desktop ratio 28% 22% 22% 28% */
+        gap: 24px 18px;
+        align-items: start;
+        text-align: left;
+        margin-bottom: 26px;
+      }
+      .footer-grid-exact > * { min-width: 0; }
+      .footer-col-1 { grid-column: auto; text-align: left; }
+      .footer-brand-row { justify-content: flex-start; gap: 10px; margin-bottom: 14px; }
+      .footer-col-1 .footer-cup-wrap img { width: 62px; }
+      .footer-col-1 .company-title { font-size: 0.9rem; }
+      .footer-social-wrapper { justify-content: flex-start; gap: 10px; }
+      .footer-social-icon { width: 34px; height: 34px; }
+      .footer-social-icon svg { width: 16px; height: 16px; }
+      .footer-nav-col { min-width: 0; text-align: left; }
+      .footer-nav-col h4 { font-size: 13px; margin-bottom: 14px; }
+      .footer-exact-links { gap: 8px; }
+      .footer-exact-links li a {
+        font-size: 13px;
+        font-weight: 500;
+        color: #DCE6F5; /* brighter than desktop pale #B9C5DC so it never looks faded */
+        line-height: 1.35;
+        overflow-wrap: break-word;
+      }
+      .foot-cta-exact {
+        grid-column: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .foot-cta-exact .footer-seal { width: 110px; height: 110px; margin: 0 auto 30px; }
+      .foot-cta-exact .seal-core { width: 86px; height: 86px; }
+      .foot-cta-exact .seal-100 { font-size: 1.7rem; }
+      .foot-cta-exact .seal-100 span { font-size: 0.55em; margin-left: 0; }
+      .foot-cta-exact .btn-coffee-pill {
+        max-width: 100%;
+        padding: 11px 18px 11px 78px;
+        font-size: 0.78rem;
+        white-space: nowrap; /* CLICK FOR COFFEE — one line */
+        text-align: center;
+        line-height: 1.2;
+      }
+      .foot-cta-exact .btn-coffee-pill span { white-space: nowrap; }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge { width: 78px; left: -6px; top: -20px; }
+      .foot-cta-exact .footer-email-link { font-size: 0.85rem; font-weight: 500; max-width: 100%; overflow-wrap: anywhere; }
+      .footer-bottom-flex { flex-direction: row; align-items: center; gap: 16px; }
+      .footer-copy-text { width: auto; color: #DCE6F5; font-weight: 500; }
+      .btn-scroll-top { align-self: center; margin-left: auto; flex: 0 0 auto; }
+    }
+
+    @media (max-width: 900px) {
+      .site-footer { padding-top: 36px; }
+      .footer-grid-exact { gap: 22px 14px; margin-bottom: 22px; }
+      .footer-col-1 .footer-cup-wrap img { width: 52px; }
+      .footer-col-1 .company-title { font-size: 0.82rem; }
+      .footer-nav-col h4 { font-size: 12px; margin-bottom: 12px; }
+      .footer-exact-links li a { font-size: 12px; font-weight: 600; color: #E3EBF8; }
+      .foot-cta-exact .footer-seal { width: 96px; height: 96px; margin-bottom: 27px; }
+      .foot-cta-exact .seal-core { width: 74px; height: 74px; }
+      .foot-cta-exact .seal-100 { font-size: 1.45rem; }
+      .foot-cta-exact .seal-txt { font-size: 0.42rem; }
+      .foot-cta-exact .btn-coffee-pill { padding: 10px 14px 10px 66px; font-size: 0.7rem; }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge { width: 66px; top: -17px; }
+      .foot-cta-exact .footer-email-link { font-size: 0.78rem; font-weight: 600; }
+    }
+
+    /* 641–760px: shrink only the pill so its one-line text still fits column 4 */
+    @media (max-width: 760px) {
+      .foot-cta-exact .btn-coffee-pill { padding: 9px 10px 9px 52px; font-size: 0.58rem; }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge { width: 50px; left: -5px; top: -13px; }
+      .foot-cta-exact .footer-seal { margin-bottom: 23px; }
+    }
+
+    /* Phones: still one row of 4 — brand stacks inside its own column.
+       Column 4 gets a bigger share so CLICK FOR COFFEE fits on one line. */
+    @media (max-width: 640px) {
+      .site-footer { padding-top: 30px; }
+      .site-footer .container { padding-left: 12px; padding-right: 12px; }
+      .footer-grid-exact {
+        grid-template-columns: 1.1fr 0.9fr 0.9fr 1.3fr;
+        gap: 18px 8px;
+        margin-bottom: 18px;
+      }
+      /* Column 1 — brand */
+      .footer-brand-row { flex-direction: column; align-items: flex-start; gap: 6px; margin-bottom: 10px; }
+      .footer-col-1 .footer-cup-wrap img { width: 42px; }
+      .footer-col-1 .company-title { font-size: 0.68rem; line-height: 1.3; }
+      .footer-social-wrapper { gap: 7px; }
+      .footer-social-icon { width: 29px; height: 29px; border-width: 1.5px; }
+      .footer-social-icon svg { width: 14px; height: 14px; }
+      /* Columns 2 + 3 — solid, readable link text (no faded look) */
+      .footer-nav-col h4 { font-size: 0.7rem; letter-spacing: 0.06em; margin-bottom: 10px; }
+      .footer-exact-links { gap: 7px; }
+      .footer-exact-links li a { font-size: 0.68rem; font-weight: 600; color: #EAF0FB; line-height: 1.35; }
+      .footer-exact-links li a:hover { transform: none; color: #FFCE1B; }
+      /* Column 4 — seal, coffee pill (ONE line), email */
+      .foot-cta-exact { padding-top: 3px; }
+      .foot-cta-exact .footer-seal { width: 68px; height: 68px; margin: 0 auto 20px; }
+      .foot-cta-exact .footer-seal::before { inset: 3px; }
+      .foot-cta-exact .seal-core { width: 54px; height: 54px; border-width: 1.5px; }
+      .foot-cta-exact .seal-100 { font-size: 1.05rem; }
+      .foot-cta-exact .seal-txt { font-size: 0.32rem; letter-spacing: 0.06em; margin-top: 2px; }
+      .foot-cta-exact .footer-seal .chk { width: 16px; height: 16px; top: -3px; border-width: 1.5px; }
+      .foot-cta-exact .footer-seal .chk svg { width: 8px; height: 8px; }
+      .foot-cta-exact .btn-coffee-pill {
+        width: 100%;
+        padding: 8px 6px 8px 38px;
+        font-size: 0.54rem;
+        letter-spacing: 0;
+        line-height: 1.2;
+        white-space: nowrap;
+        border-width: 1.5px;
+        box-shadow: 0 4px 10px rgba(11, 30, 63, 0.18);
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge { width: 38px; left: -4px; top: -10px; }
+      .foot-cta-exact .footer-email-link { font-size: 0.62rem; font-weight: 600; line-height: 1.35; margin-top: 8px; }
+      .footer-divider-line { margin: 18px 0 14px; }
+      .footer-bottom-flex { gap: 10px; }
+      .footer-copy-text { font-size: 0.7rem; font-weight: 500; color: #E4EBF8; line-height: 1.5; }
+      .btn-scroll-top { width: 36px; height: 36px; }
+      .btn-scroll-top svg { width: 17px; height: 17px; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid-exact { grid-template-columns: 1.06fr 0.87fr 0.87fr 1.4fr; gap: 16px 7px; }
+      .footer-col-1 .footer-cup-wrap img { width: 36px; }
+      .footer-col-1 .company-title { font-size: 0.64rem; }
+      .footer-social-icon { width: 27px; height: 27px; }
+      .footer-social-icon svg { width: 13px; height: 13px; }
+      .footer-nav-col h4 { font-size: 0.66rem; letter-spacing: 0.05em; margin-bottom: 9px; }
+      .footer-exact-links { gap: 6px; }
+      .footer-exact-links li a { font-size: 0.63rem; line-height: 1.32; }
+      .foot-cta-exact .footer-seal { width: 62px; height: 62px; margin-bottom: 18px; }
+      .foot-cta-exact .seal-core { width: 48px; height: 48px; }
+      .foot-cta-exact .seal-100 { font-size: 0.92rem; }
+      .foot-cta-exact .seal-txt { font-size: 0.3rem; }
+      .foot-cta-exact .btn-coffee-pill { padding: 7px 5px 7px 31px; font-size: 0.47rem; }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge { width: 29px; left: -3px; top: -8px; }
+      .foot-cta-exact .footer-email-link { font-size: 0.58rem; }
+    }
+
+    /* Smallest phones (320–380px): 4 columns + one-line pill still hold */
+    @media (max-width: 380px) {
+      .site-footer .container { padding-left: 10px; padding-right: 10px; }
+      .footer-grid-exact { grid-template-columns: 1.02fr 0.84fr 0.84fr 1.5fr; gap: 14px 6px; }
+      .footer-col-1 .footer-cup-wrap img { width: 32px; }
+      .footer-col-1 .company-title { font-size: 0.6rem; }
+      .footer-social-wrapper { gap: 6px; }
+      .footer-social-icon { width: 25px; height: 25px; }
+      .footer-social-icon svg { width: 12px; height: 12px; }
+      .footer-nav-col h4 { font-size: 0.62rem; letter-spacing: 0.04em; margin-bottom: 8px; }
+      .footer-exact-links { gap: 5px; }
+      .footer-exact-links li a { font-size: 0.59rem; }
+      .foot-cta-exact .footer-seal { width: 56px; height: 56px; margin-bottom: 17px; }
+      .foot-cta-exact .seal-core { width: 43px; height: 43px; }
+      .foot-cta-exact .seal-100 { font-size: 0.84rem; }
+      .foot-cta-exact .seal-txt { font-size: 0.28rem; letter-spacing: 0.04em; }
+      .foot-cta-exact .footer-seal .chk { width: 14px; height: 14px; }
+      .foot-cta-exact .btn-coffee-pill { padding: 6px 4px 6px 28px; font-size: 0.425rem; }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge { width: 26px; left: -3px; top: -7px; }
+      .foot-cta-exact .footer-email-link { font-size: 0.55rem; }
+      .footer-copy-text { font-size: 0.64rem; }
+      .btn-scroll-top { width: 34px; height: 34px; }
+    }
+
+    /* Footer polish: stronger small-screen copy and a larger animated
+       coffee cup on the footer pill only. */
+    .foot-cta-exact .btn-coffee-pill {
+      padding-left: 118px;
+    }
+    .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+      width: 118px;
+      left: -8px;
+      top: -30px;
+    }
+    @media (min-width: 1025px) and (max-width: 1150px) {
+      .foot-cta-exact .btn-coffee-pill {
+        padding-left: 98px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 98px;
+        top: -25px;
+      }
+    }
+    @media (max-width: 1024px) {
+      .site-footer .footer-col-1 .company-title,
+      .site-footer .footer-nav-col h4 {
+        color: #ffffff;
+        opacity: 1;
+      }
+      .site-footer .footer-exact-links li a {
+        color: #f5f8ff;
+        font-weight: 650;
+        letter-spacing: 0;
+        opacity: 1;
+      }
+      .site-footer .footer-copy-text {
+        color: #eef4ff;
+        opacity: 1;
+      }
+      .foot-cta-exact .btn-coffee-pill {
+        padding-left: 90px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 90px;
+        top: -23px;
+      }
+    }
+    @media (max-width: 900px) {
+      .foot-cta-exact .btn-coffee-pill {
+        padding-left: 76px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 76px;
+        top: -19px;
+      }
+    }
+    @media (max-width: 760px) {
+      .foot-cta-exact .btn-coffee-pill {
+        padding-left: 60px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 60px;
+        top: -15px;
+      }
+    }
+    @media (max-width: 640px) {
+      .site-footer .container {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .site-footer .footer-grid-exact {
+        grid-template-columns: 0.95fr 0.96fr 0.96fr 1.36fr;
+        gap: 18px 6px;
+      }
+      .site-footer .footer-col-1 .company-title {
+        font-size: 0.7rem;
+        font-weight: 800;
+        line-height: 1.35;
+        letter-spacing: 0;
+      }
+      .site-footer .footer-social-icon {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #ffffff;
+      }
+      .site-footer .footer-nav-col h4 {
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        margin-bottom: 9px;
+      }
+      .site-footer .footer-exact-links {
+        gap: 7px;
+      }
+      .site-footer .footer-exact-links li a {
+        font-size: 0.66rem;
+        font-weight: 700;
+        color: #f7faff;
+        line-height: 1.42;
+      }
+      .site-footer .footer-copy-text {
+        font-size: 0.68rem;
+        font-weight: 600;
+        line-height: 1.55;
+      }
+      .foot-cta-exact .footer-seal {
+        width: 76px;
+        height: 76px;
+        margin-bottom: 24px;
+      }
+      .foot-cta-exact .seal-core {
+        width: 60px;
+        height: 60px;
+      }
+      .foot-cta-exact .footer-email-link {
+        font-weight: 700;
+        color: #ffffff;
+      }
+      .foot-cta-exact .btn-coffee-pill {
+        min-height: 30px;
+        padding: 8px 6px 8px 46px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 46px;
+        left: -5px;
+        top: -13px;
+      }
+    }
+    @media (max-width: 480px) {
+      .site-footer .footer-grid-exact {
+        grid-template-columns: 0.92fr 0.95fr 0.95fr 1.38fr;
+        gap: 16px 5px;
+      }
+      .site-footer .footer-col-1 .company-title {
+        font-size: 0.66rem;
+      }
+      .site-footer .footer-nav-col h4 {
+        font-size: 0.65rem;
+      }
+      .site-footer .footer-exact-links li a {
+        font-size: 0.63rem;
+        line-height: 1.4;
+      }
+      .foot-cta-exact .footer-seal {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 21px;
+      }
+      .foot-cta-exact .seal-core {
+        width: 54px;
+        height: 54px;
+      }
+      .foot-cta-exact .btn-coffee-pill {
+        padding: 7px 5px 7px 38px;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 37px;
+        left: -4px;
+        top: -10px;
+      }
+    }
+    @media (max-width: 380px) {
+      .site-footer .footer-grid-exact {
+        grid-template-columns: 0.9fr 0.92fr 0.92fr 1.46fr;
+        gap: 14px 5px;
+      }
+      .site-footer .footer-nav-col h4 {
+        font-size: 0.6rem;
+        letter-spacing: 0.03em;
+      }
+      .site-footer .footer-exact-links li a {
+        font-size: 0.59rem;
+        font-weight: 700;
+      }
+      .foot-cta-exact .footer-seal {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 19px;
+      }
+      .foot-cta-exact .seal-core {
+        width: 49px;
+        height: 49px;
+      }
+      .foot-cta-exact .btn-coffee-pill {
+        padding: 6px 4px 6px 34px;
+        font-size: 0.4rem;
+      }
+      .foot-cta-exact .btn-coffee-pill .coffee-cup-badge {
+        width: 33px;
+        left: -3px;
+        top: -9px;
+      }
+    }
+
+    /* Careers hero — Party Services mobile order:
+       eyebrow -> heading -> visual slider -> short copy -> actions -> stats. */
+    @media (max-width: 900px) {
+      .careers-hero {
+        padding-top: 20px !important;
+        padding-bottom: 26px !important;
+      }
+      .careers-hero .hero-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+      }
+      .careers-hero .hero-content {
+        display: contents;
+      }
+      .careers-hero .hd-eyebrow {
+        order: 1;
+        align-self: flex-start;
+        max-width: 100%;
+        margin: 0 0 8px;
+        padding: 0;
+        gap: 10px;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        color: var(--color-primary);
+        font-size: 0.82rem;
+        letter-spacing: 0.15em;
+        white-space: nowrap;
+      }
+      .careers-hero .hd-eyebrow .dot {
+        width: 28px;
+        height: 2px;
+        flex: 0 0 auto;
+        border-radius: 0;
+        background: var(--color-primary);
+        box-shadow: none;
+        animation: none;
+      }
+      .careers-hero h1 {
+        order: 2;
+        margin: 0 0 14px;
+        font-size: clamp(2.05rem, 9.4vw, 2.9rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+      }
+      .careers-hero .hero-character-showcase {
+        order: 3;
+        width: 100%;
+        max-width: 540px;
+        margin: 0 auto;
+      }
+      .careers-hero .showcase-floating-seal {
+        display: none;
+      }
+      .careers-hero .character-slider-card {
+        border: 3px solid #ffffff;
+        border-radius: 24px;
+        box-shadow: 0 16px 36px rgba(11, 30, 63, 0.18);
+      }
+      .careers-hero .char-slider-track,
+      .careers-hero .char-slide {
+        height: 278px;
+        min-height: 278px;
+      }
+      .careers-hero .char-slide {
+        padding: 18px 20px 14px;
+      }
+      .careers-hero .char-slide-content {
+        max-width: 305px;
+        justify-content: center;
+      }
+      .careers-hero .char-top-row {
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+      .careers-hero .char-dept-badge,
+      .careers-hero .char-live-pill {
+        font-size: 0.62rem;
+        padding: 4px 8px;
+      }
+      .careers-hero .char-role-title {
+        font-size: 1.32rem;
+        line-height: 1.18;
+        margin-bottom: 7px;
+      }
+      .careers-hero .char-role-desc {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        font-size: 0.78rem;
+        line-height: 1.45;
+        margin-bottom: 10px;
+      }
+      .careers-hero .char-pills-row {
+        gap: 5px;
+        margin-bottom: 11px;
+      }
+      .careers-hero .char-pill {
+        font-size: 0.64rem;
+        padding: 3px 8px;
+      }
+      .careers-hero .btn-char-apply {
+        padding: 9px 16px;
+        font-size: 0.72rem;
+      }
+      .careers-hero .char-slider-bottom {
+        height: 49px;
+        padding: 8px 16px;
+      }
+      .careers-hero .hero-lead--full {
+        display: none;
+      }
+      .careers-hero .hero-lead--mobile {
+        display: block;
+        order: 4;
+        max-width: none;
+        margin: 14px 2px 0;
+        color: var(--color-text-body);
+        font-size: 0.94rem;
+        line-height: 1.6;
+      }
+      .careers-hero .hero-cta-row {
+        order: 5;
+        align-self: center;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+        width: min(100%, 300px);
+        margin: 16px auto 0;
+      }
+      .careers-hero .hero-cta-row .btn-coffee-pill {
+        order: 1;
+      }
+      .careers-hero .hero-cta-row .btn-secondary {
+        order: 2;
+      }
+      .careers-hero .hero-cta-row .btn-coffee-pill,
+      .careers-hero .hero-cta-row .btn-secondary {
+        width: 100%;
+        min-height: 51px;
+        justify-content: center;
+        text-align: center;
+      }
+      .careers-hero .hero-cta-row .btn-coffee-pill {
+        padding: 12px 18px 12px 88px;
+        font-size: 0.72rem;
+        letter-spacing: 0.01em;
+      }
+      .careers-hero .hero-cta-row .btn-coffee-pill img.coffee-cup-badge {
+        width: 88px;
+        left: -8px;
+        top: -22px;
+      }
+      .careers-hero .hero-cta-row .btn-secondary {
+        padding: 12px 20px;
+        background: transparent;
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+      .careers-hero .hero-stats-row {
+        order: 6;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        width: 100%;
+        margin: 16px 0 0;
+        padding-top: 13px;
+        border-top: 1px solid rgba(0, 73, 168, 0.12);
+      }
+      .careers-hero .stat-item {
+        align-items: center;
+        min-width: 0;
+        text-align: center;
+      }
+      .careers-hero .stat-num {
+        font-size: 1.45rem;
+      }
+      .careers-hero .stat-label {
+        font-size: 0.58rem;
+        line-height: 1.3;
+        letter-spacing: 0.03em;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .careers-hero .char-pills-row {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .careers-hero .char-slider-track,
+      .careers-hero .char-slide {
+        height: 251px;
+        min-height: 251px;
+      }
+      .careers-hero .char-slide {
+        padding: 16px 18px 12px;
+      }
+      .careers-hero .char-role-desc {
+        -webkit-line-clamp: 2;
+      }
+      .careers-hero .char-live-pill {
+        display: none;
+      }
+      .careers-hero .hero-cta-row .btn-coffee-pill {
+        padding-left: 82px;
+        font-size: 0.68rem;
+      }
+      .careers-hero .hero-cta-row .btn-coffee-pill img.coffee-cup-badge {
+        width: 82px;
+        top: -21px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .careers-hero .hd-eyebrow {
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        gap: 8px;
+      }
+      .careers-hero .hd-eyebrow .dot {
+        width: 24px;
+      }
+      .careers-hero .hero-cta-row .btn-coffee-pill {
+        padding-left: 74px;
+        font-size: 0.62rem;
+      }
+      .careers-hero .hero-cta-row .btn-coffee-pill img.coffee-cup-badge {
+        width: 74px;
+        top: -19px;
+      }
+      .careers-hero .stat-num {
+        font-size: 1.28rem;
+      }
+      .careers-hero .stat-label {
+        font-size: 0.54rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -2533,11 +3168,14 @@
           <h1 class="heading-display">
             Ready to <span style="color: var(--color-primary);">ROCK</span> under our <span class="script-accent">happy</span> roof?
           </h1>
-          <p class="hero-lead">
+          <p class="hero-lead hero-lead--full">
             We are an integrated advertising powerhouse delivering digital wizardry, viral social campaigns, and show-stopping brand experiences. If you have bold ideas, high standards, and a passion for caffeine-fueled creativity, your next career chapter starts here.
           </p>
+          <p class="hero-lead hero-lead--mobile">
+            Bold ideas, high standards and caffeine-fueled creativity — start your next career chapter under our happy roof.
+          </p>
 
-          <div style="display: flex; gap: 18px; align-items: center; flex-wrap: wrap;">
+          <div class="hero-cta-row">
             <a href="#vacancies" class="btn-secondary">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -3722,5 +4360,5 @@
       }
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e02e17a80ac3a2',t:'MTc5MjU4NDg0Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e02e17a80ac3a2',t:'MTc5MjU4NDg0Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e0d66b0a70c3a2',t:'MTc5MjU5MTc0MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
