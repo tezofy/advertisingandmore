@@ -1,0 +1,24 @@
+{
+  "name": "Advertising & More Careers",
+  "short_name": "A&M Careers",
+  "description": "Careers and job vacancies at Advertising & More Sdn. Bhd.",
+  "start_url": "./job-vacancy-page.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fdf6e9",
+  "theme_color": "#0049A8",
+  "icons": [
+    {
+      "src": "app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

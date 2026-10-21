@@ -10,12 +10,12 @@ the agreed delivery order, reviewed here, and merged into the main website
 
 ## Delivery schedule & status
 
-Schedule received: **21 October 2026** · Progress: **1 of 5 completed (20%)**
+Schedule received: **21 October 2026** · Progress: **2 of 5 completed (40%)**
 
 | No. | Deliverable | Type | Date | Time | Status | Output |
 |-----|-------------|------|------|------|--------|--------|
 | 1 | Event & Party Rentals page | Web page | 21 October 2026 | TBC | ✅ Completed | [`party-services-rentals.html`](party-services-rentals.html) |
-| 2 | Job Vacancy page | Web page | 21 October 2026 | TBC | 🗓️ Scheduled (due today) | To be added |
+| 2 | Job Vacancy page | Web page | 21 October 2026 | TBC | ✅ Completed | [`job-vacancy-page.html`](job-vacancy-page.html) |
 | 3 | Business Card design | Design | 22 October 2026 | TBC | 🗓️ Scheduled | To be added |
 | 4 | Email signoff design | Design | 22 October 2026 | TBC | 🗓️ Scheduled | To be added |
 | 5 | Maldives Corporate Conference brochure | Brochure | 23 October 2026 | TBC | 🗓️ Scheduled | To be added |
@@ -32,6 +32,11 @@ is the [preview index page](index.html).
 advertisingandmore/
 ├── index.html                  Delivery tracker (visual preview index)
 ├── party-services-rentals.html Deliverable 1 — Event & Party Rentals page
+├── job-vacancy-page.html      Deliverable 2 — Job Vacancy page
+├── manifest.webmanifest       Web app manifest used by the Job Vacancy page
+├── app-icon-192.png           Job Vacancy page app icon (192 × 192)
+├── app-icon-512.png           Job Vacancy page app icon (512 × 512)
+├── sw.js                      Service worker used by the Job Vacancy page
 ├── DELIVERY-SCHEDULE.md        Schedule, timeline and status tracking
 ├── robots.txt                  Blocks search indexing while this is a preview
 ├── .nojekyll                   Tells GitHub Pages to serve the files as-is
@@ -39,8 +44,9 @@ advertisingandmore/
 └── README.md
 ```
 
-Each web page is a single self-contained HTML file (embedded CSS, JavaScript
-and images). There is no build step.
+Each web page is delivered as a single HTML file with embedded CSS,
+JavaScript, fonts and images. The Job Vacancy page also uses the small
+manifest, icon and service-worker files listed above. There is no build step.
 
 ## Preview locally
 
@@ -68,15 +74,16 @@ Then visit `http://localhost:8000/`.
 ```text
 https://tezofy.github.io/advertisingandmore/
 https://tezofy.github.io/advertisingandmore/party-services-rentals.html
+https://tezofy.github.io/advertisingandmore/job-vacancy-page.html
 ```
 
-Send the first link for the full delivery tracker, or the second link for a
-direct review of Deliverable 1.
+Send the first link for the full delivery tracker, the second link for a
+direct review of Deliverable 1, or the third link for Deliverable 2.
 
 ## Completing the next deliverable
 
 1. Add the finished output at the repository root with a lowercase,
-   hyphenated English file name, e.g. `job-vacancy-page.html` for a web page
+   hyphenated English file name, e.g. `new-page-name.html` for a web page
    or `business-card-design.png` / `.pdf` for a design output.
 2. Update the status and output link in the table above and in
    [DELIVERY-SCHEDULE.md](DELIVERY-SCHEDULE.md), including the progress count
@@ -86,7 +93,7 @@ direct review of Deliverable 1.
 4. For web pages, test on a phone viewport (360–430 px), a tablet (768 px)
    and desktop (1280–1440 px) before committing. For design outputs, check
    the exported file at 100% zoom.
-5. Commit with a short English message, e.g. `Add Job Vacancy page`, and push.
+5. Commit with a short English message, e.g. `Add Business Card design`, and push.
    GitHub Pages redeploys automatically within a few minutes.
 
 ## Production notes
