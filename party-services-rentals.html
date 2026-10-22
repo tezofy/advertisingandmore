@@ -6682,32 +6682,53 @@
     }
   </style>
   <style id="footer-arrow-float-behavior-css">
-    /* Footer back-to-top arrow: it floats up into view while the page is being
-       scrolled, stays briefly, and drifts away once the page is still again.
-       Only the show / hide presentation of this one button is affected. */
+    /* Footer back-to-top arrow: a normal floating "back to top" button.
+       It leaves its place in the footer, floats fixed in the bottom-right
+       corner, appears once the hero section has been scrolled past and stays
+       visible all the way down the page, including the very bottom. */
     #site-footer .btn-scroll-top.arrow-float-on-scroll {
+      position: fixed;
+      top: auto;
+      right: 24px;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      margin: 0;
+      z-index: 2200;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transform: translateY(calc(-50% + 18px)) scale(0.84);
-      transition: opacity 0.3s ease, visibility 0.3s ease,
-                  transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                  background 0.2s ease;
+      transform: translateY(18px) scale(0.86);
+      transition: opacity 0.28s ease, visibility 0.28s ease,
+                  transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.2s ease, bottom 0.3s ease;
     }
     #site-footer .btn-scroll-top.arrow-float-on-scroll.is-arrow-floating {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
-      transform: translateY(-50%) scale(1);
+      transform: translateY(0) scale(1);
     }
     #site-footer .btn-scroll-top.arrow-float-on-scroll.is-arrow-floating:hover {
-      transform: translateY(calc(-50% - 3px)) scale(1);
+      transform: translateY(-3px) scale(1);
+    }
+    /* Step aside while the floating Wishlist button occupies the same corner. */
+    #site-footer .btn-scroll-top.arrow-float-on-scroll.arrow-lifted {
+      bottom: calc(24px + 68px + env(safe-area-inset-bottom, 0px));
+    }
+    @media (max-width: 767px) {
+      #site-footer .btn-scroll-top.arrow-float-on-scroll {
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+      }
+      #site-footer .btn-scroll-top.arrow-float-on-scroll.arrow-lifted {
+        bottom: calc(16px + 58px + env(safe-area-inset-bottom, 0px));
+      }
     }
     @media (prefers-reduced-motion: reduce) {
       #site-footer .btn-scroll-top.arrow-float-on-scroll,
       #site-footer .btn-scroll-top.arrow-float-on-scroll.is-arrow-floating,
-      #site-footer .btn-scroll-top.arrow-float-on-scroll.is-arrow-floating:hover {
-        transform: translateY(-50%);
+      #site-footer .btn-scroll-top.arrow-float-on-scroll.is-arrow-floating:hover,
+      #site-footer .btn-scroll-top.arrow-float-on-scroll.arrow-lifted {
+        transform: none;
         transition: opacity 0.2s ease, visibility 0.2s ease, background 0.2s ease;
       }
     }
@@ -7285,7 +7306,7 @@
           </a>
 
           <!-- Email below button -->
-          <a class="footer-email-link" href="/cdn-cgi/l/email-protection#8de5e8e1e1e2cdece9fbe8fff9e4fee4e3eaece3e9e0e2ffe8a3eee2e0"><span class="__cf_email__" data-cfemail="87efe2ebebe8c7e6e3f1e2f5f3eef4eee9e0e6e9e3eae8f5e2a9e4e8ea">[email&#160;protected]</span></a>
+          <a class="footer-email-link" href="/cdn-cgi/l/email-protection#e58d8089898aa58481938097918c968c8b82848b81888a9780cb868a88"><span class="__cf_email__" data-cfemail="7e161b1212113e1f1a081b0c0a170d1710191f101a13110c1b501d1113">[email&#160;protected]</span></a>
         </div>
 
       </div>
@@ -9262,43 +9283,52 @@ delete window.intlTelInputUtilsTemp;
     })();
   </script>
   <script id="footer-arrow-float-behavior-js">
-    // Footer back-to-top arrow: floats up while scrolling, leaves after an idle pause.
+    // Footer back-to-top arrow: floats up after the hero and stays visible to the page bottom.
     (() => {
       const arrow = document.querySelector('#site-footer .btn-scroll-top');
       if (!arrow) return;
 
-      const IDLE_DELAY = 2500;
-      let idleTimer = null;
+      const hero = document.querySelector('#hero');
       let ticking = false;
-      let lastY = window.pageYOffset;
 
-      arrow.classList.add('arrow-float-on-scroll');
-
-      const hideArrow = () => {
-        idleTimer = null;
-        arrow.classList.remove('is-arrow-floating');
+      const heroThreshold = () => {
+        const heroBottom = hero
+          ? hero.getBoundingClientRect().bottom + window.pageYOffset
+          : 0;
+        return Math.max(120, heroBottom - 60);
       };
 
-      const showArrow = () => {
-        arrow.classList.add('is-arrow-floating');
-        if (idleTimer) clearTimeout(idleTimer);
-        idleTimer = window.setTimeout(hideArrow, IDLE_DELAY);
-      };
-
-      const onScroll = () => {
+      const sync = () => {
         ticking = false;
-        const y = window.pageYOffset;
-        if (Math.abs(y - lastY) < 1) return;
-        lastY = y;
-        showArrow();
+        arrow.classList.toggle('is-arrow-floating', window.pageYOffset > heroThreshold());
       };
 
-      window.addEventListener('scroll', () => {
+      const requestSync = () => {
         if (ticking) return;
         ticking = true;
-        window.requestAnimationFrame(onScroll);
-      }, { passive: true });
+        window.requestAnimationFrame(sync);
+      };
+
+      arrow.classList.add('arrow-float-on-scroll');
+      window.addEventListener('scroll', requestSync, { passive: true });
+      window.addEventListener('resize', requestSync, { passive: true });
+      window.addEventListener('load', requestSync);
+      sync();
+
+      // Keep clear of the floating Wishlist button when it shares the same corner.
+      const tray = document.querySelector('.wishlist-tray-btn');
+      if (tray) {
+        const syncLift = () => {
+          const shown = window.getComputedStyle(tray).display !== 'none';
+          arrow.classList.toggle('arrow-lifted', shown);
+        };
+        new MutationObserver(syncLift).observe(tray, {
+          attributes: true,
+          attributeFilter: ['hidden', 'class', 'style']
+        });
+        syncLift();
+      }
     })();
   </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e6a4d7ef72dae6',t:'MTc5MjY1MjYyNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
