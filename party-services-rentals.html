@@ -7649,6 +7649,102 @@
       }
     }
   </style>
+  <style id="contact-form-desktop-styles">
+    /* ==========================================================================
+       ENQUIRY FORM — desktop layout, identical to the live site's Forminator
+       form (label left / field right, full-width submit pill).
+       Mobile is untouched: everything here needs min-width 768px.
+       ========================================================================== */
+    @media (min-width: 768px) {
+
+      #contact .homepage-form-card {
+        display: block;
+        width: 100%;
+        max-width: 840px;
+        margin: 0 auto;
+        padding: 40px 35px;
+        background: #FFFFFF;
+        border-radius: 24px;
+        box-shadow: none;
+      }
+
+      #contact .homepage-form-card form {
+        width: 100%;
+        margin: 0;
+      }
+
+      /* ---- the services row also holds the rows that follow it ---- */
+      #contact .homepage-services-row {
+        display: grid;
+        grid-template-columns: 38.4416% 61.5584%;
+        align-items: start;
+        row-gap: 0;
+        width: 100%;
+        margin: 0 0 20px;
+      }
+
+      #contact .homepage-services-row > .homepage-label-wrap { grid-column: 1; }
+      #contact .homepage-services-row > .homepage-field-wrap { grid-column: 2; }
+
+      #contact .homepage-services-row > .homepage-form-row,
+      #contact .homepage-services-row > .homepage-form-note-row,
+      #contact .homepage-services-row > .homepage-checkbox-row,
+      #contact .homepage-services-row > .homepage-coffee-submit,
+      #contact .homepage-services-row > .homepage-form-status { grid-column: 1 / -1; }
+
+      /* ---- the rows that follow: label left, field right ---- */
+      #contact .homepage-services-row > .homepage-form-row {
+        display: grid;
+        grid-template-columns: 38.4416% 61.5584%;
+        align-items: start;
+        width: 100%;
+        margin: 0 0 20px;
+      }
+
+      #contact .homepage-services-row > .homepage-form-row > .homepage-label-wrap { grid-column: 1; }
+      #contact .homepage-services-row > .homepage-form-row > .homepage-field-wrap { grid-column: 2; }
+
+      #contact .homepage-services-row > .homepage-form-row.homepage-investment-row { margin-bottom: 10px; }
+      #contact .homepage-services-row > .homepage-form-row.homepage-message-row { margin-bottom: 6px; }
+
+      #contact .homepage-services-row .homepage-label-wrap { padding-right: 20px; }
+
+      /* ---- fields fill their column exactly like the live form ---- */
+      #contact .homepage-textarea,
+      #contact .homepage-select { width: 100%; }
+
+      /* ---- note under the e-mail field ---- */
+      #contact .homepage-services-row > .homepage-form-note-row {
+        display: block;
+        width: 100%;
+        margin: 0 0 20px;
+      }
+
+      #contact .homepage-label-note { width: 100%; }
+
+      /* ---- the two checkbox lines ---- */
+      #contact .homepage-services-row > .homepage-checkbox-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+        margin: 0 0 20px;
+      }
+
+      #contact .homepage-checkbox-row .homepage-checkbox-label {
+        width: auto;
+        max-width: none;
+        flex: 1 1 auto;
+      }
+
+      /* ---- submit pill ---- */
+      #contact .homepage-coffee-submit {
+        width: 100%;
+        margin-top: 15px;
+        box-shadow: 0 4px 12px rgba(11, 30, 63, .14);
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -12722,5 +12818,5 @@ delete window.intlTelInputUtilsTemp;
       }
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e993195e5edae4',t:'MTc5MjY4MzM1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ea7e1cbde1c718',t:'MTc5MjY5Mjk4MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4e993195e5edae4',t:'MTc5MjY4MzM1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ea9d003c1ddae2',t:'MTc5MjY5NDI0Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
