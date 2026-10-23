@@ -8252,6 +8252,30 @@
     #hero .hb-slide-copy.is-in .hb-desc { animation: none; }
   }
 </style>
+  <style id="contact-form-gap-styles">
+  /* v3.19 — "Services You Require" and "Your Work Email Address" were visually
+     glued together (0px apart). Give the services field its own breathing room
+     on desktop only; the mobile layout stays exactly as it was. */
+  /* the "More" row also gets a +/- handle on its right edge */
+  #contact .homepage-services-panel.hp-tree-panel .hp-tree-more-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 8px;
+  }
+  #contact .homepage-services-panel.hp-tree-panel .hp-tree-more-wrap .homepage-service-option {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  #contact .homepage-services-panel.hp-tree-panel .hp-more-plus { margin-left: auto; }
+
+  @media (min-width: 768px) {
+    #homepage-contact-form #homepageServicesSelect { margin-bottom: 24px; }
+    #homepage-contact-form .homepage-services-row > .homepage-form-row:not(.homepage-services-row) {
+      margin-top: 0;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -9168,7 +9192,7 @@
                   </div>
                 </div>
                 <div class="hp-tree-more-wrap">
-                  <label class="homepage-service-option" for="homepageService101"><input id="homepageService101" type="checkbox" name="select-1[]" value="&amp; More: Please elaborate in short bullet forms what you need us for." data-homepage-service><span>&amp; More: Please elaborate in short bullet forms what you need us for.</span></label>
+                  <label class="homepage-service-option" for="homepageService101"><input id="homepageService101" type="checkbox" name="select-1[]" value="More: Please Tell Us What You Need" data-homepage-service><span>More: Please Tell Us What You Need</span></label><button type="button" class="hp-tree-plus hp-more-plus" id="homepageMorePlus" aria-expanded="false" aria-controls="homepageMoreServices" aria-label="Add your own required service" title="Add your own required service">+</button></div>
                 </div>
                 </div><p class="homepage-field-error" id="homepageServicesError" hidden>Please select at least one service.</p>
             </div>
@@ -9176,7 +9200,7 @@
 
           <div class="homepage-form-row homepage-more-row" id="homepageMoreServices" hidden>
             <div class="homepage-label-wrap">
-              <span class="homepage-label" id="homepageMoreServicesLabel">&amp; More: Please tell us, in brief bullet points, what service you need from us.</span>
+              <span class="homepage-label" id="homepageMoreServicesLabel">More: Please Tell Us What You Need</span>
             </div>
             <div class="homepage-field-wrap" role="group" aria-labelledby="homepageMoreServicesLabel">
               <div class="homepage-more-list" id="homepageMoreList">
@@ -11607,7 +11631,7 @@
       const submitBtn = document.getElementById('homepageSubmitBtn');
       const submitLabel = document.getElementById('homepageSubmitLabel');
       const formStatus = document.getElementById('homepageFormStatus');
-      const moreServiceValue = '& More: Please elaborate in short bullet forms what you need us for.';
+      const moreServiceValue = 'More: Please Tell Us What You Need';
       const originalSubmitText = submitLabel ? submitLabel.textContent : 'CLICK FOR COFFEE';
       let moreCounter = 1;
       let successTimer = null;
@@ -11723,6 +11747,39 @@
           updateMoreButtons();
         });
       }
+
+      /* v3.19-more-plus */
+      // "+" / "−" on the "More: Please Tell Us What You Need" option — adds or
+      // removes the free-text service rows, the same way categories open/close.
+      const morePlus = document.getElementById('homepageMorePlus');
+      const moreCheck = document.getElementById('homepageService101');
+      function syncMorePlus() {
+        if (!morePlus || !moreCheck) return;
+        const open = moreCheck.checked;
+        morePlus.textContent = open ? '−' : '+';
+        morePlus.setAttribute('aria-expanded', open ? 'true' : 'false');
+        morePlus.setAttribute('aria-label', open
+          ? 'Remove your own required service'
+          : 'Add your own required service');
+      }
+      if (morePlus && moreCheck) {
+        morePlus.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          moreCheck.checked = !moreCheck.checked;
+          moreCheck.dispatchEvent(new Event('change', { bubbles: true }));
+          syncMorePlus();
+          if (moreCheck.checked) {
+            // close the dropdown so the free-text rows underneath are usable
+            setServicesPanel(false);
+            const first = moreList && moreList.querySelector('input[name="text-1[]"]');
+            if (first) setTimeout(() => first.focus({ preventScroll: true }), 80);
+          }
+        });
+        moreCheck.addEventListener('change', syncMorePlus);
+        syncMorePlus();
+      }
+      /* /v3.19-more-plus */
 
       form.addEventListener('reset', () => {
         setTimeout(() => {
@@ -13288,5 +13345,5 @@ delete window.intlTelInputUtilsTemp;
         counter: () => pad(index + 1) + ' / ' + pad(slides.length) };
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4eebf1fcce826ba',t:'MTc5MjczNzU4Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4eee9424b20dae3',t:'MTc5MjczOTMxMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
