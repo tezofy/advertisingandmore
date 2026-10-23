@@ -8513,6 +8513,112 @@
         }
       }
     </style>
+<!-- v3.24: pink tray heart + heart flies from the card into the wishlist tray -->
+    <style id="wishlist-fly-heart-styles">
+      /* v3.24 - the tray's own heart turns the same pink as the cards,
+         and a heart flies from the clicked card into the tray. */
+      .wishlist-tray-btn .wishlist-tray-icon svg path {
+        fill: #FF3E8C;
+        stroke: #FF3E8C;
+      }
+      .hp-flying-heart {
+        position: fixed;
+        z-index: 2600;
+        width: 26px;
+        height: 26px;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        will-change: transform, opacity;
+      }
+      .hp-flying-heart svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        fill: #FF3E8C;
+        stroke: #FF3E8C;
+        filter: drop-shadow(0 6px 12px rgba(255, 62, 140, 0.5));
+      }
+      .wishlist-tray-btn.hp-tray-bump {
+        animation: hpTrayBump 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      @keyframes hpTrayBump {
+        0%   { transform: scale(1); }
+        35%  { transform: scale(1.12); }
+        70%  { transform: scale(0.97); }
+        100% { transform: scale(1); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .wishlist-tray-btn.hp-tray-bump { animation: none; }
+      }
+    </style>
+
+    <script id="wishlist-fly-heart-script">
+      /* v3.24 - a pink heart flies from the clicked card to the wishlist
+         tray. Additive only: the existing toggleWishlist() is untouched. */
+      (() => {
+        const PATH = 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z';
+        const reduce = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const tray = () => document.getElementById('wishlist-tray-btn');
+
+        function bump(el) {
+          el.classList.remove('hp-tray-bump');
+          void el.offsetWidth;
+          el.classList.add('hp-tray-bump');
+          setTimeout(() => el.classList.remove('hp-tray-bump'), 560);
+        }
+
+        function targetRect(t) {
+          const icon = t.querySelector('.wishlist-tray-icon');
+          const r = (icon || t).getBoundingClientRect();
+          if (r.width && r.height) return r;
+          // tray not painted yet - fall back to its fixed bottom-right spot
+          return { left: window.innerWidth - 60, top: window.innerHeight - 60, width: 40, height: 40 };
+        }
+
+        function fly(fromEl) {
+          if (reduce()) return;
+          const t = tray();
+          if (!t || typeof Element.prototype.animate !== 'function') return;
+          const f = fromEl.getBoundingClientRect();
+          const tr = targetRect(t);
+          const sx = f.left + f.width / 2;
+          const sy = f.top + f.height / 2;
+          const ex = tr.left + tr.width / 2;
+          const ey = tr.top + tr.height / 2;
+          const dx = ex - sx;
+          const dy = ey - sy;
+
+          const el = document.createElement('span');
+          el.className = 'hp-flying-heart';
+          el.setAttribute('aria-hidden', 'true');
+          el.innerHTML = '<svg viewBox="0 0 24 24"><path d="' + PATH + '"></path></svg>';
+          el.style.left = sx + 'px';
+          el.style.top = sy + 'px';
+          document.body.appendChild(el);
+
+          const anim = el.animate([
+            { transform: 'translate(-50%, -50%) scale(0.9)', opacity: 0.95, offset: 0 },
+            { transform: 'translate(calc(-50% + ' + (dx * 0.55) + 'px), calc(-50% + ' + (dy * 0.45 - 62) + 'px)) scale(1.25)', opacity: 1, offset: 0.55 },
+            { transform: 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px)) scale(0.4)', opacity: 0.12, offset: 1 }
+          ], { duration: 820, easing: 'cubic-bezier(0.3, 0.7, 0.4, 1)', fill: 'forwards' });
+
+          anim.onfinish = () => {
+            el.remove();
+            bump(t);
+          };
+          anim.oncancel = () => el.remove();
+        }
+
+        document.addEventListener('click', (event) => {
+          const btn = event.target && event.target.closest
+            ? event.target.closest('.services-grid-12 .catalog-card .wishlist-btn')
+            : null;
+          if (!btn) return;
+          if (btn.classList.contains('is-active')) return; // removing: no flight
+          requestAnimationFrame(() => requestAnimationFrame(() => fly(btn)));
+        }, true);
+      })();
+    </script>
 
       <!-- Category Filter Tabs Bar (Horizontally scrollable) -->
       <div class="category-tabs-container">
@@ -13437,5 +13543,5 @@ delete window.intlTelInputUtilsTemp;
         counter: () => pad(index + 1) + ' / ' + pad(slides.length) };
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ef632afbf22154',t:'MTc5Mjc0NDMwNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ef7f463e3ddae3',t:'MTc5Mjc0NTQ1Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
