@@ -8427,6 +8427,35 @@
       .services-section .services-toolbar { display: none !important; }
       .services-section .category-tabs-container { margin-top: 14px; }
     </style>
+<!-- v3.22: wishlist pills use the "CLICK FOR COFFEE" gold -->
+    <style id="wishlist-gold-styles">
+      /* v3.22 - "Add to Wishlist" now wears the same gold as the
+         "CLICK FOR COFFEE" pill: flat --color-accent-gold, #20304D text,
+         the same pill radius and the same soft navy shadow. */
+      .services-section .services-grid-12 .catalog-card .wishlist-btn {
+        background: var(--color-accent-gold);
+        color: #20304D;
+        border-color: transparent;
+        box-shadow: 0 6px 18px rgba(11, 30, 63, 0.14);
+      }
+      .services-section .services-grid-12 .catalog-card .wishlist-btn svg {
+        stroke: currentColor;
+      }
+      .services-section .services-grid-12 .catalog-card .wishlist-btn:hover,
+      .services-section .services-grid-12 .catalog-card .wishlist-btn:focus-visible {
+        background: var(--color-accent-gold-hover);
+        color: #20304D;
+        border-color: transparent;
+        box-shadow: 0 10px 24px rgba(255, 206, 27, 0.45);
+      }
+      /* already-saved state stays readable: same gold, navy inner ring */
+      .services-section .services-grid-12 .catalog-card .wishlist-btn.is-active {
+        background: linear-gradient(135deg, #FFCE1B 0%, #D5A021 100%);
+        color: #20304D;
+        border-color: transparent;
+        box-shadow: inset 0 0 0 2px rgba(11, 30, 63, 0.22), 0 6px 18px rgba(11, 30, 63, 0.14);
+      }
+    </style>
 
       <!-- Category Filter Tabs Bar (Horizontally scrollable) -->
       <div class="category-tabs-container">
@@ -13351,5 +13380,5 @@ delete window.intlTelInputUtilsTemp;
         counter: () => pad(index + 1) + ' / ' + pad(slides.length) };
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ef1f21bdddc718',t:'MTc5Mjc0MTUxOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ef488c5ee726ba',t:'MTc5Mjc0MzIxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
