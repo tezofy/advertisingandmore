@@ -15180,5 +15180,218 @@ delete window.intlTelInputUtilsTemp;
     }
   })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4f2b1983b99dae6',t:'MTc5Mjc3ODk3Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4f2ecfe4d3a2154',t:'MTc5Mjc4MTQwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4f2b1983b99dae6',t:'MTc5Mjc3ODk3Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><!-- v3.32: Quick Specs is now a per-card floating popover -->
+  <style id="t15-specs-popover-css">
+    /* v3.32 — Quick Specs opens as its own floating popover, per card.
+       Because the panel leaves the card's flow while open, one card never
+       stretches (or affects) the other two cards in its row. */
+
+    /* tighter, calmer spec rows: smaller tick, text starts close to it */
+    .t15-specs-panel ul {
+      margin: 0;
+      padding: 11px 12px 10px;
+      border-radius: 12px;
+      display: grid;
+      gap: 7px;
+    }
+    .t15-specs-panel li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 0;
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: left;
+    }
+    .t15-specs-panel li svg {
+      width: 11px;
+      height: 11px;
+      min-width: 11px;
+      flex: 0 0 11px;
+      margin-top: 3px;
+      stroke-width: 3;
+    }
+    .t15-specs-panel li > span {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+      overflow-wrap: break-word;
+    }
+
+    /* ---------- the floating popover ---------- */
+    .t15-specs-panel.t15-specs-pop {
+      position: fixed;
+      z-index: 2400;
+      margin: 0;
+      max-height: none;
+      max-width: min(340px, calc(100vw - 24px));
+      overflow: visible;
+      background: #fff;
+      border: 1px solid rgba(11, 30, 63, 0.12);
+      border-radius: 14px;
+      box-shadow: 0 22px 44px rgba(7, 23, 53, 0.24), 0 4px 12px rgba(7, 23, 53, 0.12);
+      padding: 4px;
+      opacity: 0;
+      transform: translateY(-8px) scale(0.97);
+      transform-origin: 50% 0;
+      transition: opacity .18s ease, transform .22s cubic-bezier(.22,.61,.36,1);
+      will-change: opacity, transform;
+    }
+    .t15-specs-panel.t15-specs-pop.is-shown {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .t15-specs-panel.t15-specs-pop.is-closing {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+      pointer-events: none;
+    }
+    /* little pointer that ties the popover to its button */
+    .t15-specs-panel.t15-specs-pop::before {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: calc(var(--t15-arrow-vp, 50%) - var(--t15-pop-left, 0px));
+      width: 12px;
+      height: 12px;
+      margin-left: -6px;
+      background: #fff;
+      border-left: 1px solid rgba(11, 30, 63, 0.12);
+      border-top: 1px solid rgba(11, 30, 63, 0.12);
+      transform: rotate(45deg);
+      border-radius: 2px 0 0 0;
+    }
+    .t15-specs-panel.t15-specs-pop[data-arrow="none"]::before { display: none; }
+
+    /* the button stays "pressed" while its popover is open */
+    .t15-specs-btn[aria-expanded="true"] {
+      color: var(--color-primary-dark, #0b1e3f);
+    }
+    .t15-specs-btn[aria-expanded="true"] .t15-chevron { transform: rotate(180deg); }
+
+    @media (max-width: 640px) {
+      .t15-specs-panel ul { padding: 9px 10px 8px; gap: 6px; }
+      .t15-specs-panel li { font-size: 11px; gap: 5px; }
+      .t15-specs-panel li svg { width: 10px; height: 10px; min-width: 10px; flex-basis: 10px; margin-top: 2px; }
+    }
+  </style>
+
+  <script id="t15-specs-popover-js">
+    /* v3.32 — one popover per card, never a shared row height change.
+       Clicking Quick Specs lifts that card's own panel out as a floating
+       card below the button; a small scroll (either direction) sends it
+       back home, as does an outside click or Escape. */
+    (() => {
+      const CLOSE_ON_SCROLL_AFTER = 120;   // ms — ignore the click's own reflow
+      let open = null;                      // { panel, btn, card, openedAt }
+
+      const panelOf = (btn) => {
+        const id = btn && btn.getAttribute('aria-controls');
+        return id ? document.getElementById(id) : null;
+      };
+
+      function place(pop, btn) {
+        const r = btn.getBoundingClientRect();
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const w = Math.min(Math.max(r.width + 40, 240), Math.min(340, vw - 24));
+        pop.style.width = w + 'px';
+
+        /* centre on the button, but stay inside the viewport */
+        const left = Math.min(Math.max(12, r.left + r.width / 2 - w / 2), vw - w - 12);
+        pop.style.left = left + 'px';
+        /* remember where the arrow should point (viewport + popover space) */
+        pop.style.setProperty('--t15-arrow-vp', Math.min(Math.max(16, r.left + r.width / 2), vw - 16) + 'px');
+
+        // measure after width is applied
+        const h = pop.offsetHeight || 0;
+        let top = r.bottom + 10;
+        let arrow = 'down';
+        if (top + h > vh - 12 && r.top - h - 10 > 12) {
+          top = r.top - h - 10;
+          arrow = 'up';
+        }
+        pop.style.top = Math.max(12, top) + 'px';
+        pop.dataset.arrow = arrow === 'down' ? 'down' : 'none';
+        pop.style.setProperty('--t15-pop-left', left + 'px');
+      }
+
+      function closeOpen() {
+        if (!open) return;
+        const { panel, btn, card } = open;
+        open = null;
+        panel.classList.remove('is-shown');
+        panel.classList.add('is-closing');
+        btn.setAttribute('aria-expanded', 'false');
+        const finish = () => {
+          panel.classList.remove('is-closing', 't15-specs-pop');
+          panel.style.cssText = '';
+          panel.dataset.arrow = '';
+          if (panel.parentElement !== card) card.appendChild(panel);
+        };
+        setTimeout(finish, 200);
+      }
+
+      function openFor(btn) {
+        const card = btn.closest('.t15-card');
+        const panel = panelOf(btn);
+        if (!card || !panel) return;
+        if (open && open.panel === panel) { closeOpen(); return; }
+        if (open) closeOpen();
+
+        card.appendChild(panel);              // keep the node inside its own card
+        document.body.appendChild(panel);     // …but paint it above everything
+        panel.classList.add('t15-specs-pop');
+        btn.setAttribute('aria-expanded', 'true');
+        place(panel, btn);
+
+        requestAnimationFrame(() => {
+          panel.classList.add('is-shown');
+        });
+        open = { panel, btn, card, openedAt: Date.now() };
+      }
+
+      /* capture phase: this runs before the legacy inline accordion and
+         stops it, so the old "row grows" behaviour can never fire again */
+      document.addEventListener('click', (ev) => {
+        const btn = ev.target.closest && ev.target.closest('.t15-specs-btn');
+        if (btn) {
+          ev.preventDefault();
+          ev.stopPropagation();
+          openFor(btn);
+          return;
+        }
+        if (open && !ev.target.closest('.t15-specs-pop')) closeOpen();
+      }, true);
+
+      /* a small scroll (up or down) sends the popover back to its place */
+      window.addEventListener('scroll', () => {
+        if (!open) return;
+        if (Date.now() - open.openedAt < CLOSE_ON_SCROLL_AFTER) return;
+        closeOpen();
+      }, { passive: true });
+
+      window.addEventListener('wheel', () => {
+        if (!open) return;
+        if (Date.now() - open.openedAt < CLOSE_ON_SCROLL_AFTER) return;
+        closeOpen();
+      }, { passive: true });
+
+      window.addEventListener('touchmove', () => {
+        if (!open) return;
+        if (Date.now() - open.openedAt < CLOSE_ON_SCROLL_AFTER) return;
+        closeOpen();
+      }, { passive: true });
+
+      document.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape' && open) { closeOpen(); }
+      });
+
+      window.addEventListener('resize', () => { if (open) closeOpen(); });
+    })();
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4f31945b8fc0d67',t:'MTc5Mjc4MzIyMg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
