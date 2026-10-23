@@ -13543,5 +13543,169 @@ delete window.intlTelInputUtilsTemp;
         counter: () => pad(index + 1) + ' / ' + pad(slides.length) };
     })();
   </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ef7f463e3ddae3',t:'MTc5Mjc0NTQ1Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<!-- v3.25: the SEE MORE card shows the next images as a blurred gallery -->
+    <style id="see-more-gallery-styles">
+      /* v3.25 - the SEE MORE card previews the cards that come next:
+         the 16th card's picture sits blurred behind the text and a few
+         more pictures peek out around it like a gallery stack. */
+      .services-section .services-grid-12 .catalog-see-more-card {
+        overflow: hidden;
+      }
+      .services-section .services-grid-12 .catalog-see-more-card .hp-see-more-gallery {
+        position: absolute;
+        inset: 0;
+        display: block;
+        z-index: 0;
+        overflow: hidden;
+        border-radius: inherit;
+        pointer-events: none;
+      }
+      .hp-see-more-gallery img {
+        position: absolute;
+        display: block;
+        object-fit: cover;
+        border-radius: 14px;
+        opacity: 0.72;
+        filter: blur(10px) saturate(1.1) brightness(0.95);
+      }
+      .hp-see-more-gallery .hp-sm-front {
+        top: 17%;
+        left: 11%;
+        width: 78%;
+        height: 64%;
+        border-radius: 16px;
+        opacity: 0.92;
+        box-shadow: 0 14px 34px rgba(2, 8, 20, 0.55), 0 0 0 1.5px rgba(255, 255, 255, 0.14);
+        filter: blur(4px) saturate(1.2) brightness(1);
+      }
+      .hp-see-more-gallery .hp-sm-back {
+        width: 46%;
+        height: 25%;
+        opacity: 0.72;
+        box-shadow: 0 10px 24px rgba(2, 8, 20, 0.45), 0 0 0 1.5px rgba(255, 255, 255, 0.12);
+        filter: blur(6px) saturate(1.2) brightness(0.96);
+      }
+      .hp-see-more-gallery .hp-sm-back-1 {
+        top: 4%;
+        left: 3%;
+        transform: rotate(-8deg);
+      }
+      .hp-see-more-gallery .hp-sm-back-2 {
+        top: 6%;
+        right: 2%;
+        transform: rotate(7deg);
+      }
+      .hp-see-more-gallery .hp-sm-back-3 {
+        bottom: 4%;
+        left: 27%;
+        transform: rotate(2deg);
+      }
+      .hp-see-more-gallery::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(
+          ellipse at 50% 42%,
+          rgba(7, 23, 53, 0.3) 0%,
+          rgba(7, 23, 53, 0.46) 56%,
+          rgba(4, 17, 38, 0.74) 100%
+        );
+      }
+      .services-section .services-grid-12 .catalog-see-more-card .catalog-see-more-inner {
+        position: relative;
+        z-index: 2;
+      }
+      @media (max-width: 700px) {
+        .hp-see-more-gallery .hp-sm-front {
+          top: 15%;
+          left: 10%;
+          width: 80%;
+          height: 66%;
+          filter: blur(3.5px) saturate(1.18) brightness(1);
+        }
+        .hp-see-more-gallery .hp-sm-back {
+          width: 50%;
+          height: 24%;
+          filter: blur(5px) saturate(1.18) brightness(0.96);
+        }
+      }
+    </style>
+
+    <script id="see-more-gallery-script">
+      /* v3.25 - paints the blurred "next images" gallery inside the
+         SEE MORE card. Read-only: the catalogue logic is untouched. */
+      (() => {
+        const GRID_SEL = '.services-grid-12';
+        let queued = false;
+
+        function nextImages() {
+          let imgs = [];
+          try {
+            const start = Math.min(catalogVisibleCount, currentFilteredKeys.length);
+            const keys = currentFilteredKeys.slice(start, start + 4);
+            imgs = keys.map((k) => (catalogData[k] || {}).img).filter(Boolean);
+          } catch (err) {
+            imgs = [];
+          }
+          if (!imgs.length) {
+            imgs = Array.from(document.querySelectorAll(GRID_SEL + ' .catalog-card img'))
+              .slice(-4)
+              .map((img) => img.getAttribute('src'))
+              .filter(Boolean);
+          }
+          return imgs;
+        }
+
+        function build() {
+          const btn = document.getElementById('catalogSeeMoreBtn');
+          if (!btn || btn.hidden || !btn.isConnected) return;
+          const imgs = nextImages();
+          if (!imgs.length) return;
+
+          const pick = (i) => imgs[i % imgs.length];
+          const layer = document.createElement('span');
+          layer.className = 'hp-see-more-gallery';
+          layer.setAttribute('aria-hidden', 'true');
+          layer.innerHTML =
+            '<img class="hp-sm-back hp-sm-back-1" alt="" src="' + pick(1) + '">' +
+            '<img class="hp-sm-back hp-sm-back-2" alt="" src="' + pick(2) + '">' +
+            '<img class="hp-sm-back hp-sm-back-3" alt="" src="' + pick(3) + '">' +
+            '<img class="hp-sm-front" alt="" src="' + pick(0) + '">';
+
+          const old = btn.querySelector('.hp-see-more-gallery');
+          if (old) old.remove();
+          btn.insertBefore(layer, btn.firstChild);
+        }
+
+        function schedule() {
+          if (queued) return;
+          queued = true;
+          requestAnimationFrame(() => {
+            queued = false;
+            build();
+          });
+        }
+
+        function start() {
+          build();
+          const grid = document.querySelector(GRID_SEL);
+          if (grid && typeof MutationObserver === 'function') {
+            new MutationObserver(schedule).observe(grid, { childList: true, subtree: true });
+          }
+          const search = document.getElementById('servicesSearchInput');
+          document.querySelectorAll('.tab-pill-btn').forEach((tab) => {
+            tab.addEventListener('click', () => setTimeout(schedule, 60));
+          });
+          window.addEventListener('resize', schedule);
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => setTimeout(start, 0));
+        } else {
+          setTimeout(start, 0);
+        }
+      })();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4ef97971dfa26ba',t:'MTc5Mjc0NjQ1Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
